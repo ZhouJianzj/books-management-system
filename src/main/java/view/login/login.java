@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Tue Feb 02 17:34:07 CST 2021
  */
 
-package view;
+package view.login;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,7 +13,7 @@ import javax.swing.*;
 import dao.LoginDao;
 
 import model.User;
-
+import view.mainPanel.mainPanel;
 
 
 /**
@@ -25,9 +25,11 @@ public class login {
     }
 
     /**
-     * 登录按钮的事件
+     * 登录按钮事件
+     * @param e
      */
-    private void actionLog(){
+    private void logActionPerformed(ActionEvent e) {
+        // TODO add your code here
         if (userName.getText() == null ||"".equals(userName.getText().trim())){
             JOptionPane.showMessageDialog(userName.getParent(),"请输入用户名");
         }else if(password.getPassword().length == 0){
@@ -39,25 +41,23 @@ public class login {
             LoginDao loginDao = new LoginDao();
             boolean checked = loginDao.checked(user);
             if (checked){
-                System.out.println("登陆成功");
-                JOptionPane.showMessageDialog(userName.getParent(),"登录成功！");
+                new mainPanel();
+               login.dispose();
             }else{
                 JOptionPane.showMessageDialog(userName.getParent(),"你输入的账户密码错误！");
             }
         }
     }
 
-    /**
-     * 按钮重置事件
-     */
-    private void actionReset(){
+    private void resetActionPerformed(ActionEvent e) {
+        // TODO add your code here
         userName.setText("");
         password.setText("");
     }
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - unknown
-        登录 = new JFrame();
+        login = new JFrame();
         label1 = new JLabel();
         label2 = new JLabel();
         label3 = new JLabel();
@@ -65,32 +65,21 @@ public class login {
         password = new JPasswordField();
         log = new JButton();
         reset = new JButton();
-        log.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                actionLog();
-            }
-        });
-        reset.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                actionReset();
-            }
-        });
-        //======== 登录 ========
+
+        //======== login ========
         {
-            登录.setBackground(Color.lightGray);
-            登录.setTitle("\u767b\u5f55");
-            登录.setVisible(true);
-            登录.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-            登录.setResizable(false);
-            Container 登录ContentPane = 登录.getContentPane();
+            login.setBackground(Color.lightGray);
+            login.setTitle("\u767b\u5f55");
+            login.setVisible(true);
+            login.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            login.setResizable(false);
+            Container loginContentPane = login.getContentPane();
 
             //---- label1 ----
             label1.setText("\u56fe\u4e66\u7ba1\u7406\u7cfb\u7edf");
             label1.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 24));
             label1.setHorizontalAlignment(SwingConstants.RIGHT);
-            label1.setIcon(new ImageIcon(getClass().getResource("/pic/login/tushu.png")));
+            label1.setIcon(new ImageIcon(getClass().getResource("/pic/login/tushuguan.png")));
 
             //---- label2 ----
             label2.setText("\u7528\u6237\uff1a");
@@ -114,66 +103,78 @@ public class login {
             log.setText("\u767b\u5f55");
             log.setIcon(new ImageIcon(getClass().getResource("/pic/login/denglu.png")));
             log.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+            log.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    logActionPerformed(e);
+                }
+            });
 
             //---- reset ----
             reset.setText("\u91cd\u7f6e");
             reset.setIcon(new ImageIcon(getClass().getResource("/pic/login/zhongzhi.png")));
             reset.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+            reset.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    resetActionPerformed(e);
+                }
+            });
 
-            GroupLayout 登录ContentPaneLayout = new GroupLayout(登录ContentPane);
-            登录ContentPane.setLayout(登录ContentPaneLayout);
-            登录ContentPaneLayout.setHorizontalGroup(
-                登录ContentPaneLayout.createParallelGroup()
-                    .addGroup(登录ContentPaneLayout.createSequentialGroup()
-                        .addGroup(登录ContentPaneLayout.createParallelGroup()
-                            .addGroup(登录ContentPaneLayout.createSequentialGroup()
+            GroupLayout loginContentPaneLayout = new GroupLayout(loginContentPane);
+            loginContentPane.setLayout(loginContentPaneLayout);
+            loginContentPaneLayout.setHorizontalGroup(
+                loginContentPaneLayout.createParallelGroup()
+                    .addGroup(loginContentPaneLayout.createSequentialGroup()
+                        .addGroup(loginContentPaneLayout.createParallelGroup()
+                            .addGroup(loginContentPaneLayout.createSequentialGroup()
                                 .addGap(100, 100, 100)
-                                .addGroup(登录ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(登录ContentPaneLayout.createSequentialGroup()
+                                .addGroup(loginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(loginContentPaneLayout.createSequentialGroup()
                                         .addComponent(reset, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(log, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(登录ContentPaneLayout.createSequentialGroup()
-                                        .addGroup(登录ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addGroup(loginContentPaneLayout.createSequentialGroup()
+                                        .addGroup(loginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                             .addComponent(label2)
                                             .addComponent(label3))
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(登录ContentPaneLayout.createParallelGroup()
+                                        .addGroup(loginContentPaneLayout.createParallelGroup()
                                             .addComponent(userName, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
                                             .addComponent(password, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(登录ContentPaneLayout.createSequentialGroup()
+                            .addGroup(loginContentPaneLayout.createSequentialGroup()
                                 .addGap(145, 145, 145)
                                 .addComponent(label1, GroupLayout.PREFERRED_SIZE, 196, GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(141, Short.MAX_VALUE))
             );
-            登录ContentPaneLayout.setVerticalGroup(
-                登录ContentPaneLayout.createParallelGroup()
-                    .addGroup(登录ContentPaneLayout.createSequentialGroup()
+            loginContentPaneLayout.setVerticalGroup(
+                loginContentPaneLayout.createParallelGroup()
+                    .addGroup(loginContentPaneLayout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addComponent(label1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
-                        .addGroup(登录ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addGroup(loginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(userName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addComponent(label2))
                         .addGap(54, 54, 54)
-                        .addGroup(登录ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addGroup(loginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(password, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addComponent(label3))
                         .addGap(45, 45, 45)
-                        .addGroup(登录ContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addGroup(loginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(reset)
                             .addComponent(log))
                         .addContainerGap(66, Short.MAX_VALUE))
             );
-            登录.setSize(525, 430);
-            登录.setLocationRelativeTo(登录.getOwner());
+            login.setSize(525, 430);
+            login.setLocationRelativeTo(login.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - unknown
-    private JFrame 登录;
+    private JFrame login;
     private JLabel label1;
     private JLabel label2;
     private JLabel label3;

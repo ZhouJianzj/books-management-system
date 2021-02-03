@@ -1,0 +1,215 @@
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.6" encoding: "UTF-8"
+
+new FormModel {
+	"i18n.autoExternalize": true
+	"i18n.bundleName": "view"
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.CardLayout ) ) {
+			name: "mianForm"
+			"visible": true
+			"defaultCloseOperation": 3
+			"title": "BOOKS-MANAGEMENT-SYSTEM"
+			"$sizePolicy": 1
+			"resizable": false
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:185:p, comp label5:::p:607:p, space ::226:x}}"
+				"$verticalGroup": "par l {seq l {space :p:121:p, comp label5:::p:156:p, space ::453:x}}"
+			} ) {
+				name: "welcome"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": new FormMessage( null, "label5.text" )
+					"horizontalAlignment": 0
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 48 )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "card1"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {par l {seq l {space :p:240:p, par l:::p {comp label6:::::x, comp label4:::::x}, space :p:18:p, par l {comp scrollPane1:::p:282:p, comp bookTpye:::p:282:p}}, seq l {space :p:285:p, par t {comp search:::p:387:p, seq {comp clean:::p::p, space :p:256:p, comp add:::p::p}}, space s:::p, comp loadingSearch:::p:89:p}}, space ::142:x}, comp picPanel::l::1018:x}"
+				"$verticalGroup": "par l {seq l {space :::p, par t {seq {comp picPanel:::p:198:p, space :p:68:p, comp search:::p:30:p}, comp loadingSearch:::p::p}, space :p:55:p, par b {comp label4::b:p:32:p, comp bookTpye::b:p::p}, space :p:32:p, par l {seq {comp label6:::p::p, space ::211:x}, seq {comp scrollPane1::::200:x, space :p:30:p}}, par b {comp add::b:p::p, comp clean::b:p::p}, space :p:49:p}}"
+			} ) {
+				name: "addPanel"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": new FormMessage( null, "label4.text" )
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/tushu.png" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": new FormMessage( null, "label6.text" )
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/miaoshu.png" )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "bookTpye"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "bookDesc"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "clean"
+					"text": new FormMessage( null, "clean.text" )
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/zhongzhi.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cleanActionPerformed", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "add"
+					"text": new FormMessage( null, "add.text" )
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/jiashang.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bookTypeAddActionPerformed", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "search"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "loadingSearch"
+					"text": new FormMessage( null, "loadingSearch.text" )
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 16 )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/sousuo.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "loadingSearchActionPerformed", true ) )
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.CardLayout ) ) {
+					name: "picPanel"
+					"background": new java.awt.Color( 255, 204, 204, 255 )
+					addEvent( new FormEvent( "java.beans.PropertyChangeListener", "propertyChange", "picPanelPropertyChange", true ) )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+						name: "picPanelFirst"
+						"background": new java.awt.Color( 204, 255, 204, 255 )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "one"
+							"text": new FormMessage( null, "one.text" )
+							"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/7324741c-7a3d-46cd-b010-2585ae08226b.jpg" )
+						}, new FormLayoutConstraints( class java.lang.String ) {
+							"value": "Center"
+						} )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "card1"
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+						name: "picPanelTwo"
+						"background": new java.awt.Color( 255, 204, 204, 255 )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "two"
+							"text": new FormMessage( null, "two.text" )
+							"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/6d9c71af-8d82-4b05-b1b9-5544545c2295.jpg" )
+						}, new FormLayoutConstraints( class java.lang.String ) {
+							"value": "Center"
+						} )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "card2"
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+						name: "picPanelThree"
+						"background": new java.awt.Color( 153, 255, 255, 255 )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "three"
+							"text": new FormMessage( null, "three.text" )
+							"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/113c0d58-0756-402a-ba9a-6d222e8321ad.jpg" )
+						}, new FormLayoutConstraints( class java.lang.String ) {
+							"value": "Center"
+						} )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "card3"
+					} )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "card2"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {space :0:1018:x}"
+				"$verticalGroup": "par l {space :0:730:x}"
+			} ) {
+				name: "alterPanel"
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "card3"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:290:p, comp label2:::p::p, space ::680:x}}"
+				"$verticalGroup": "par l {seq l {space :p:171:p, comp label2:::p::p, space ::542:x}}"
+			} ) {
+				name: "bookAddPanel"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": new FormMessage( null, "label2.text" )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "card4"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:280:p, comp label1:::p:186:p, space ::552:x}}"
+				"$verticalGroup": "par l {seq l {space :p:153:p, comp label1:::p::p, space ::560:x}}"
+			} ) {
+				name: "bookAlterPanel"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": new FormMessage( null, "label1.text" )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "card5"
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu1"
+					"text": new FormMessage( null, "menu1.text" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/banshou.png" )
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu2"
+						"text": new FormMessage( null, "menu2.text" )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "addMenu"
+							"text": new FormMessage( null, "addMenu.text" )
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addMenuActionPerformed", true ) )
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "alterMenu"
+							"text": new FormMessage( null, "alterMenu.text" )
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "alterMenuActionPerformed", true ) )
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu3"
+						"text": new FormMessage( null, "menu3.text" )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "bookAddMenu"
+							"text": new FormMessage( null, "bookAddMenu.text" )
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bookAddMenuActionPerformed", true ) )
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "bookAlterMenu"
+							"text": new FormMessage( null, "bookAlterMenu.text" )
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bookAlterMenuActionPerformed", true ) )
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "exit"
+						"text": new FormMessage( null, "exit.text" )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem3ActionPerformed", true ) )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "exitActionPerformed", true ) )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu4"
+					"text": new FormMessage( null, "menu4.text" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/guanyuwomen.png" )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem6"
+						"text": new FormMessage( null, "menuItem6.text" )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem6ActionPerformed", true ) )
+					} )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 365 )
+			"size": new java.awt.Dimension( 1020, 800 )
+		} )
+	}
+}
