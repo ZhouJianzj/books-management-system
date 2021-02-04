@@ -42,7 +42,7 @@ public class login {
             boolean checked = loginDao.checked(user);
             if (checked){
                 new mainPanel();
-               login.dispose();
+                login.dispose();
             }else{
                 JOptionPane.showMessageDialog(userName.getParent(),"你输入的账户密码错误！");
             }

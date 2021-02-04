@@ -29,10 +29,8 @@ public class LoginDao {
            statement = con.prepareStatement(String.valueOf(sql));
            statement.setString(1,user.getUserName());
            statement.setString(2,user.getPassword());
-           System.out.println("设置sql语句完成:" + sql);
            resultSet = statement.executeQuery();
             if (resultSet.next()){
-                System.out.println("有结果集");
                 return true;
             }
 

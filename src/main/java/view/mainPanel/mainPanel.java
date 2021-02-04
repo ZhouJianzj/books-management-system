@@ -5,12 +5,21 @@
 package view.mainPanel;
 
 import java.beans.*;
+import javax.lang.model.element.VariableElement;
+import javax.swing.table.*;
+
+import dao.alterBookTypeManager.alterSearch;
+import dao.alterBookTypeManager.alterType;
+import dao.alterBookTypeManager.deleteType;
+import dao.alterBookTypeManager.showTableData;
 import dao.bookTypeManager.LoadingSearch;
 import dao.bookTypeManager.bookTypeAdd;
 import model.BookType;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 import javax.smartcardio.Card;
 import javax.swing.*;
@@ -23,8 +32,6 @@ public class mainPanel {
     public mainPanel() {
         initComponents();
 
-    }
-    public void setBg(){
     }
 
     /**
@@ -43,6 +50,8 @@ public class mainPanel {
     private void alterMenuActionPerformed(ActionEvent e) {
         // TODO add your code here
         cut("card3");
+        getTableData();
+
     }
 
     /**
@@ -158,6 +167,10 @@ public class mainPanel {
 
     }
 
+    /**
+     * 轮播图的实现
+     * @param e
+     */
     private void picPanelPropertyChange(PropertyChangeEvent e) {
         // TODO add your code here
         //定时器切换JPanel
@@ -171,9 +184,12 @@ public class mainPanel {
                 cardLayout.next(picPanel);
             }
         }).start();
-
     }
 
+    /**
+     * 安全退出事件
+     * @param e
+     */
     private void exitActionPerformed(ActionEvent e) {
         // TODO add your code here
         // 0：代表的是确认 1:代表的是否 2：代表的是取消
@@ -181,6 +197,89 @@ public class mainPanel {
         if (i == 0){
             mianForm.dispose();
         }
+    }
+
+    /**
+     * 获取所有的图书类别展示到表格
+     */
+    public void getTableData(){
+        showTableData data = new showTableData();
+        ResultSet resultSet = data.showTableData(alterPanelTable);
+        if (resultSet == null){
+            JOptionPane.showMessageDialog(alterPanel,"图书还没有类别");
+        }
+    }
+
+    /**
+     * 修改图书类别panel中的搜索按钮事件
+     * @param e
+     */
+    private void alterSearchButtonActionPerformed(ActionEvent e) {
+        // TODO add your code here
+        alterSearch alterSearch = new alterSearch();
+        String text = alterSearchText.getText();
+        if (text == null || "".equals(text)) {
+            getTableData();
+            JOptionPane.showMessageDialog(alterPanel,"请输入需要查询的图书类别名称！");
+        }else{
+            alterSearch.doSearch(alterSearchText,alterPanelTable);
+        }
+    }
+
+    /**
+     * alterPanel中delete按钮事件
+     * @param e
+     */
+    private void deleteTypeButtonActionPerformed(ActionEvent e) {
+        // TODO add your code here
+
+        if (alterPanelID.getText() == null || "".equals(alterPanelID.getText())) {
+            JOptionPane.showMessageDialog(alterPanel,"没有选择要删除的图书类别！");
+        }else if (JOptionPane.showConfirmDialog(alterPanel, "是否确认删除！") == 0) {
+            System.out.println(alterPanelID.getText());
+                    deleteType deleteType = new deleteType();
+                    int i = deleteType.deleteData(alterPanelID);
+                    if (i == 1) {
+                        getTableData();
+                        alterPanelID.setText("");
+                        图书类别名称.setText("");
+                        描述.setText("");
+                        JOptionPane.showMessageDialog(alterPanel, "删除成功！");
+                    }
+        }
+    }
+
+    /**
+     * alterPanel中修改按钮事件
+     * @param e
+     */
+    private void alterTypeAddButtonActionPerformed(ActionEvent e) {
+        // TODO add your code here
+        if (alterPanelID.getText() == null || "".equals(alterPanelID.getText())){
+            JOptionPane.showMessageDialog(alterPanel,"没有选择需要修改的图书类别！");
+        }else if (alterPanelID.getText().equals(alterPanelTable.getValueAt(alterPanelTable.getSelectedRow(),0))
+                    && 图书类别名称.getText().equals(alterPanelTable.getValueAt(alterPanelTable.getSelectedRow(),1))
+                    && 描述.getText().equals(alterPanelTable.getValueAt(alterPanelTable.getSelectedRow(),2))){
+            JOptionPane.showMessageDialog(alterPanel,"你还没有做任何的修改！");
+
+        } else{
+            alterType alterType = new alterType();
+            alterType.alterData(alterPanelID,图书类别名称,描述);
+            getTableData();
+            JOptionPane.showMessageDialog(alterPanel,"修改成功！");
+        }
+    }
+
+    /**
+     * 选中表格传递数据事件
+     * @param e
+     */
+    private void alterPanelTableMousePressed(MouseEvent e) {
+        // TODO add your code here
+        int selectedRow = alterPanelTable.getSelectedRow();
+        alterPanelID.setText((String)alterPanelTable.getValueAt(selectedRow,0));
+        图书类别名称.setText((String)alterPanelTable.getValueAt(selectedRow,1));
+        描述.setText((String)alterPanelTable.getValueAt(selectedRow,2));
     }
 
     private void initComponents() {
@@ -219,15 +318,73 @@ public class mainPanel {
         picPanelThree = new JPanel();
         three = new JLabel();
         alterPanel = new JPanel();
+        label3 = new JLabel();
+        alterSearchText = new JTextField();
+        alterSearchButton = new JButton();
+        scrollPane2 = new JScrollPane();
+        alterPanelTable = new JTable();
+        label7 = new JLabel();
+        label8 = new JLabel();
+        label9 = new JLabel();
+        textLablell = new JLabel();
+        scrollPane3 = new JScrollPane();
+        描述 = new JTextArea();
+        alterTypeButton = new JButton();
+        deleteTypeButton = new JButton();
+        图书类别名称 = new JTextField();
+        alterPanelID = new JTextField();
         bookAddPanel = new JPanel();
         label2 = new JLabel();
+        label10 = new JLabel();
+        label11 = new JLabel();
+        label12 = new JLabel();
+        label13 = new JLabel();
+        label14 = new JLabel();
+        scrollPane4 = new JScrollPane();
+        textArea1 = new JTextArea();
+        button1 = new JButton();
+        button2 = new JButton();
+        textField1 = new JTextField();
+        textField2 = new JTextField();
+        textField3 = new JTextField();
+        comboBox1 = new JComboBox();
+        radioButton1 = new JRadioButton();
+        radioButton2 = new JRadioButton();
         bookAlterPanel = new JPanel();
-        label1 = new JLabel();
+        label15 = new JLabel();
+        label16 = new JLabel();
+        label17 = new JLabel();
+        label18 = new JLabel();
+        bookName = new JTextField();
+        bookauthor = new JTextField();
+        bookAlterSearch = new JButton();
+        comboBox2 = new JComboBox();
+        scrollPane6 = new JScrollPane();
+        table1 = new JTable();
+        label27 = new JLabel();
+        label28 = new JLabel();
+        label29 = new JLabel();
+        label30 = new JLabel();
+        label31 = new JLabel();
+        label32 = new JLabel();
+        label33 = new JLabel();
+        label34 = new JLabel();
+        scrollPane7 = new JScrollPane();
+        textArea2 = new JTextArea();
+        button5 = new JButton();
+        button6 = new JButton();
+        textField8 = new JTextField();
+        textField9 = new JTextField();
+        textField10 = new JTextField();
+        textField11 = new JTextField();
+        radioButton3 = new JRadioButton();
+        radioButton4 = new JRadioButton();
+        comboBox3 = new JComboBox();
 
         //======== mianForm ========
         {
             mianForm.setVisible(true);
-            mianForm.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            mianForm.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
             mianForm.setTitle("BOOKS-MANAGEMENT-SYSTEM");
             mianForm.setResizable(false);
             Container mianFormContentPane = mianForm.getContentPane();
@@ -327,12 +484,12 @@ public class mainPanel {
 
             //======== welcome ========
             {
-                welcome.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder
-                (0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder.CENTER,javax.swing.border
-                .TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
-                .Color.red),welcome. getBorder()));welcome. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void
-                propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException()
-                ;}});
+                welcome.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
+                border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER
+                ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font
+                . BOLD ,12 ) ,java . awt. Color .red ) ,welcome. getBorder () ) ); welcome. addPropertyChangeListener(
+                new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r"
+                .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
 
                 //---- label5 ----
                 label5.setText(bundle.getString("label5.text"));
@@ -343,17 +500,17 @@ public class mainPanel {
                 welcome.setLayout(welcomeLayout);
                 welcomeLayout.setHorizontalGroup(
                     welcomeLayout.createParallelGroup()
-                        .addGroup(welcomeLayout.createSequentialGroup()
-                            .addGap(185, 185, 185)
+                        .addGroup(GroupLayout.Alignment.TRAILING, welcomeLayout.createSequentialGroup()
+                            .addContainerGap(217, Short.MAX_VALUE)
                             .addComponent(label5, GroupLayout.PREFERRED_SIZE, 607, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(226, Short.MAX_VALUE))
+                            .addGap(194, 194, 194))
                 );
                 welcomeLayout.setVerticalGroup(
                     welcomeLayout.createParallelGroup()
                         .addGroup(welcomeLayout.createSequentialGroup()
-                            .addGap(121, 121, 121)
+                            .addGap(224, 224, 224)
                             .addComponent(label5, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(453, Short.MAX_VALUE))
+                            .addContainerGap(350, Short.MAX_VALUE))
                 );
             }
             mianFormContentPane.add(welcome, "card1");
@@ -518,15 +675,167 @@ public class mainPanel {
             //======== alterPanel ========
             {
 
+                //---- label3 ----
+                label3.setText(bundle.getString("label3.text"));
+                label3.setHorizontalAlignment(SwingConstants.CENTER);
+                label3.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+
+                //---- alterSearchButton ----
+                alterSearchButton.setText("\u641c\u7d22");
+                alterSearchButton.setIcon(new ImageIcon(getClass().getResource("/pic/login/sousuo.png")));
+                alterSearchButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        alterSearchButtonActionPerformed(e);
+                    }
+                });
+
+                //======== scrollPane2 ========
+                {
+
+                    //---- alterPanelTable ----
+                    alterPanelTable.setModel(new DefaultTableModel(
+                        new Object[][] {
+                        },
+                        new String[] {
+                            "\u7f16\u53f7", "\u56fe\u4e66\u7c7b\u522b\u540d\u79f0", "\u56fe\u4e66\u7c7b\u522b\u63cf\u8ff0"
+                        }
+                    ) {
+                        boolean[] columnEditable = new boolean[] {
+                            false, false, false
+                        };
+                        @Override
+                        public boolean isCellEditable(int rowIndex, int columnIndex) {
+                            return columnEditable[columnIndex];
+                        }
+                    });
+                    alterPanelTable.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mousePressed(MouseEvent e) {
+                            alterPanelTableMousePressed(e);
+                        }
+                    });
+                    scrollPane2.setViewportView(alterPanelTable);
+                }
+
+                //---- label7 ----
+                label7.setText(bundle.getString("label7.text"));
+                label7.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 16));
+
+                //---- label8 ----
+                label8.setText(bundle.getString("label8.text"));
+                label8.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
+
+                //---- label9 ----
+                label9.setText(bundle.getString("label9.text"));
+                label9.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
+
+                //---- textLablell ----
+                textLablell.setText(bundle.getString("textLablell.text"));
+                textLablell.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
+
+                //======== scrollPane3 ========
+                {
+                    scrollPane3.setViewportView(描述);
+                }
+
+                //---- alterTypeButton ----
+                alterTypeButton.setText(bundle.getString("alterTypeButton.text"));
+                alterTypeButton.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+                alterTypeButton.setIcon(new ImageIcon(getClass().getResource("/pic/login/xiugai.png")));
+                alterTypeButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        alterTypeAddButtonActionPerformed(e);
+                    }
+                });
+
+                //---- deleteTypeButton ----
+                deleteTypeButton.setText(bundle.getString("deleteTypeButton.text"));
+                deleteTypeButton.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+                deleteTypeButton.setIcon(new ImageIcon(getClass().getResource("/pic/login/chushaixuanxiang.png")));
+                deleteTypeButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        deleteTypeButtonActionPerformed(e);
+                    }
+                });
+
+                //---- alterPanelID ----
+                alterPanelID.setHorizontalAlignment(SwingConstants.CENTER);
+                alterPanelID.setEditable(false);
+
                 GroupLayout alterPanelLayout = new GroupLayout(alterPanel);
                 alterPanel.setLayout(alterPanelLayout);
                 alterPanelLayout.setHorizontalGroup(
                     alterPanelLayout.createParallelGroup()
-                        .addGap(0, 1018, Short.MAX_VALUE)
+                        .addGroup(GroupLayout.Alignment.TRAILING, alterPanelLayout.createSequentialGroup()
+                            .addGroup(alterPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addGroup(alterPanelLayout.createSequentialGroup()
+                                    .addGap(0, 175, Short.MAX_VALUE)
+                                    .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 671, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(alterPanelLayout.createSequentialGroup()
+                                    .addGap(149, 149, 149)
+                                    .addComponent(deleteTypeButton)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 469, Short.MAX_VALUE)
+                                    .addComponent(alterTypeButton)))
+                            .addGap(172, 172, 172))
+                        .addGroup(alterPanelLayout.createSequentialGroup()
+                            .addGroup(alterPanelLayout.createParallelGroup()
+                                .addGroup(alterPanelLayout.createSequentialGroup()
+                                    .addGap(212, 212, 212)
+                                    .addGroup(alterPanelLayout.createParallelGroup()
+                                        .addGroup(alterPanelLayout.createSequentialGroup()
+                                            .addComponent(label8)
+                                            .addGap(56, 56, 56)
+                                            .addComponent(alterPanelID, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(116, 116, 116)
+                                            .addComponent(textLablell)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(图书类别名称, GroupLayout.PREFERRED_SIZE, 231, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(alterPanelLayout.createSequentialGroup()
+                                            .addComponent(label9)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(alterPanelLayout.createSequentialGroup()
+                                    .addGap(220, 220, 220)
+                                    .addComponent(label3, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(alterSearchText, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(56, 56, 56)
+                                    .addComponent(alterSearchButton, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(alterPanelLayout.createSequentialGroup()
+                                    .addGap(71, 71, 71)
+                                    .addComponent(label7, GroupLayout.PREFERRED_SIZE, 231, GroupLayout.PREFERRED_SIZE)))
+                            .addContainerGap(186, Short.MAX_VALUE))
                 );
                 alterPanelLayout.setVerticalGroup(
                     alterPanelLayout.createParallelGroup()
-                        .addGap(0, 730, Short.MAX_VALUE)
+                        .addGroup(alterPanelLayout.createSequentialGroup()
+                            .addGap(70, 70, 70)
+                            .addGroup(alterPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(alterSearchButton)
+                                .addComponent(alterSearchText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                            .addGap(43, 43, 43)
+                            .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
+                            .addGap(44, 44, 44)
+                            .addComponent(label7, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addGroup(alterPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label8)
+                                .addComponent(图书类别名称, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textLablell)
+                                .addComponent(alterPanelID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(31, 31, 31)
+                            .addGroup(alterPanelLayout.createParallelGroup()
+                                .addComponent(label9)
+                                .addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
+                            .addGap(51, 51, 51)
+                            .addGroup(alterPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(alterTypeButton)
+                                .addComponent(deleteTypeButton))
+                            .addContainerGap(75, Short.MAX_VALUE))
                 );
             }
             mianFormContentPane.add(alterPanel, "card3");
@@ -537,46 +846,309 @@ public class mainPanel {
                 //---- label2 ----
                 label2.setText(bundle.getString("label2.text"));
 
+                //---- label10 ----
+                label10.setText(bundle.getString("label10.text"));
+
+                //---- label11 ----
+                label11.setText(bundle.getString("label11.text"));
+
+                //---- label12 ----
+                label12.setText(bundle.getString("label12.text"));
+
+                //---- label13 ----
+                label13.setText(bundle.getString("label13.text"));
+
+                //---- label14 ----
+                label14.setText(bundle.getString("label14.text"));
+
+                //======== scrollPane4 ========
+                {
+                    scrollPane4.setViewportView(textArea1);
+                }
+
+                //---- button1 ----
+                button1.setText(bundle.getString("button1.text"));
+                button1.setIcon(new ImageIcon(getClass().getResource("/pic/login/jiashang.png")));
+
+                //---- button2 ----
+                button2.setText(bundle.getString("button2.text"));
+                button2.setIcon(new ImageIcon(getClass().getResource("/pic/login/miaoshu.png")));
+
+                //---- radioButton1 ----
+                radioButton1.setText(bundle.getString("radioButton1.text"));
+
+                //---- radioButton2 ----
+                radioButton2.setText(bundle.getString("radioButton2.text"));
+
                 GroupLayout bookAddPanelLayout = new GroupLayout(bookAddPanel);
                 bookAddPanel.setLayout(bookAddPanelLayout);
                 bookAddPanelLayout.setHorizontalGroup(
                     bookAddPanelLayout.createParallelGroup()
                         .addGroup(bookAddPanelLayout.createSequentialGroup()
-                            .addGap(290, 290, 290)
-                            .addComponent(label2)
-                            .addContainerGap(680, Short.MAX_VALUE))
+                            .addGap(210, 210, 210)
+                            .addGroup(bookAddPanelLayout.createParallelGroup()
+                                .addGroup(bookAddPanelLayout.createSequentialGroup()
+                                    .addComponent(button2)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
+                                    .addComponent(button1)
+                                    .addGap(213, 213, 213))
+                                .addGroup(bookAddPanelLayout.createSequentialGroup()
+                                    .addGroup(bookAddPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addComponent(label14)
+                                        .addComponent(label10)
+                                        .addComponent(label2)
+                                        .addComponent(label13))
+                                    .addGap(26, 26, 26)
+                                    .addGroup(bookAddPanelLayout.createParallelGroup()
+                                        .addGroup(bookAddPanelLayout.createSequentialGroup()
+                                            .addGroup(bookAddPanelLayout.createParallelGroup()
+                                                .addGroup(bookAddPanelLayout.createSequentialGroup()
+                                                    .addGap(10, 10, 10)
+                                                    .addGroup(bookAddPanelLayout.createParallelGroup()
+                                                        .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(comboBox1))
+                                                    .addGap(64, 64, 64))
+                                                .addGroup(bookAddPanelLayout.createSequentialGroup()
+                                                    .addComponent(radioButton1)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(radioButton2)
+                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)))
+                                            .addGroup(bookAddPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(bookAddPanelLayout.createSequentialGroup()
+                                                    .addComponent(label11)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(textField2, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(bookAddPanelLayout.createSequentialGroup()
+                                                    .addComponent(label12)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(textField3))))
+                                        .addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 413, GroupLayout.PREFERRED_SIZE))
+                                    .addContainerGap(193, Short.MAX_VALUE))))
                 );
                 bookAddPanelLayout.setVerticalGroup(
                     bookAddPanelLayout.createParallelGroup()
                         .addGroup(bookAddPanelLayout.createSequentialGroup()
-                            .addGap(171, 171, 171)
-                            .addComponent(label2)
-                            .addContainerGap(542, Short.MAX_VALUE))
+                            .addGap(82, 82, 82)
+                            .addGroup(bookAddPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label2)
+                                .addComponent(label11)
+                                .addComponent(textField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(90, 90, 90)
+                            .addGroup(bookAddPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label10)
+                                .addComponent(label12)
+                                .addComponent(textField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(radioButton1)
+                                .addComponent(radioButton2))
+                            .addGap(59, 59, 59)
+                            .addGroup(bookAddPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label13)
+                                .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(73, 73, 73)
+                            .addGroup(bookAddPanelLayout.createParallelGroup()
+                                .addGroup(bookAddPanelLayout.createSequentialGroup()
+                                    .addComponent(label14)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                                    .addGroup(bookAddPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(button1)
+                                        .addComponent(button2))
+                                    .addGap(89, 89, 89))
+                                .addGroup(bookAddPanelLayout.createSequentialGroup()
+                                    .addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
+                                    .addContainerGap(190, Short.MAX_VALUE))))
                 );
             }
             mianFormContentPane.add(bookAddPanel, "card4");
 
             //======== bookAlterPanel ========
             {
+                bookAlterPanel.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
 
-                //---- label1 ----
-                label1.setText(bundle.getString("label1.text"));
+                //---- label15 ----
+                label15.setText(bundle.getString("label15.text"));
+                label15.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+
+                //---- label16 ----
+                label16.setText(bundle.getString("label16.text"));
+
+                //---- label17 ----
+                label17.setText(bundle.getString("label17.text"));
+
+                //---- label18 ----
+                label18.setText(bundle.getString("label18.text"));
+
+                //---- bookAlterSearch ----
+                bookAlterSearch.setText(bundle.getString("bookAlterSearch.text"));
+                bookAlterSearch.setIcon(new ImageIcon(getClass().getResource("/pic/login/sousuo.png")));
+
+                //======== scrollPane6 ========
+                {
+                    scrollPane6.setViewportView(table1);
+                }
+
+                //---- label27 ----
+                label27.setText(bundle.getString("label27.text"));
+                label27.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+
+                //---- label28 ----
+                label28.setText(bundle.getString("label28.text"));
+
+                //---- label29 ----
+                label29.setText(bundle.getString("label29.text"));
+
+                //---- label30 ----
+                label30.setText(bundle.getString("label30.text"));
+
+                //---- label31 ----
+                label31.setText(bundle.getString("label31.text"));
+
+                //---- label32 ----
+                label32.setText(bundle.getString("label32.text"));
+
+                //---- label33 ----
+                label33.setText(bundle.getString("label33.text"));
+
+                //---- label34 ----
+                label34.setText(bundle.getString("label34.text"));
+
+                //======== scrollPane7 ========
+                {
+                    scrollPane7.setViewportView(textArea2);
+                }
+
+                //---- button5 ----
+                button5.setText(bundle.getString("button5.text"));
+                button5.setIcon(new ImageIcon(getClass().getResource("/pic/login/chushaixuanxiang.png")));
+
+                //---- button6 ----
+                button6.setText(bundle.getString("button6.text"));
+                button6.setIcon(new ImageIcon(getClass().getResource("/pic/login/xiugai.png")));
+
+                //---- radioButton3 ----
+                radioButton3.setText(bundle.getString("radioButton3.text"));
+
+                //---- radioButton4 ----
+                radioButton4.setText(bundle.getString("radioButton4.text"));
 
                 GroupLayout bookAlterPanelLayout = new GroupLayout(bookAlterPanel);
                 bookAlterPanel.setLayout(bookAlterPanelLayout);
                 bookAlterPanelLayout.setHorizontalGroup(
                     bookAlterPanelLayout.createParallelGroup()
                         .addGroup(bookAlterPanelLayout.createSequentialGroup()
-                            .addGap(280, 280, 280)
-                            .addComponent(label1, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(552, Short.MAX_VALUE))
+                            .addGroup(bookAlterPanelLayout.createParallelGroup()
+                                .addGroup(bookAlterPanelLayout.createSequentialGroup()
+                                    .addGap(49, 49, 49)
+                                    .addGroup(bookAlterPanelLayout.createParallelGroup()
+                                        .addComponent(label15)
+                                        .addComponent(label27)))
+                                .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addGroup(GroupLayout.Alignment.LEADING, bookAlterPanelLayout.createSequentialGroup()
+                                        .addGap(106, 106, 106)
+                                        .addGroup(bookAlterPanelLayout.createParallelGroup()
+                                            .addGroup(bookAlterPanelLayout.createSequentialGroup()
+                                                .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                                    .addGroup(bookAlterPanelLayout.createParallelGroup()
+                                                        .addComponent(label28)
+                                                        .addComponent(label29))
+                                                    .addComponent(label34))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(bookAlterPanelLayout.createSequentialGroup()
+                                                        .addGroup(bookAlterPanelLayout.createParallelGroup()
+                                                            .addComponent(textField8, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(textField9, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))
+                                                        .addGap(37, 37, 37)
+                                                        .addGroup(bookAlterPanelLayout.createParallelGroup()
+                                                            .addGroup(bookAlterPanelLayout.createSequentialGroup()
+                                                                .addComponent(label31)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(textField10, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
+                                                            .addGroup(bookAlterPanelLayout.createSequentialGroup()
+                                                                .addComponent(label30)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(textField11, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)))
+                                                        .addGap(29, 29, 29)
+                                                        .addGroup(bookAlterPanelLayout.createParallelGroup()
+                                                            .addGroup(bookAlterPanelLayout.createSequentialGroup()
+                                                                .addComponent(label32)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(radioButton3)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(radioButton4))
+                                                            .addGroup(bookAlterPanelLayout.createSequentialGroup()
+                                                                .addComponent(label33)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(comboBox3, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))))
+                                                    .addComponent(scrollPane7)))
+                                            .addGroup(bookAlterPanelLayout.createSequentialGroup()
+                                                .addComponent(button5)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 626, Short.MAX_VALUE)
+                                                .addComponent(button6))))
+                                    .addGroup(GroupLayout.Alignment.LEADING, bookAlterPanelLayout.createSequentialGroup()
+                                        .addGap(117, 117, 117)
+                                        .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(scrollPane6)
+                                            .addGroup(bookAlterPanelLayout.createSequentialGroup()
+                                                .addComponent(label16)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(bookName, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(label17)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(bookauthor, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(24, 24, 24)
+                                                .addComponent(label18)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(bookAlterSearch))))))
+                            .addGap(66, 66, 66))
                 );
                 bookAlterPanelLayout.setVerticalGroup(
                     bookAlterPanelLayout.createParallelGroup()
                         .addGroup(bookAlterPanelLayout.createSequentialGroup()
-                            .addGap(153, 153, 153)
-                            .addComponent(label1)
-                            .addContainerGap(560, Short.MAX_VALUE))
+                            .addGap(43, 43, 43)
+                            .addComponent(label15)
+                            .addGap(35, 35, 35)
+                            .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label17)
+                                .addComponent(bookauthor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bookAlterSearch)
+                                .addComponent(label16)
+                                .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label18)
+                                .addComponent(bookName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addComponent(scrollPane6, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
+                            .addGap(61, 61, 61)
+                            .addComponent(label27)
+                            .addGap(28, 28, 28)
+                            .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label28)
+                                .addComponent(label30)
+                                .addComponent(label32)
+                                .addComponent(textField8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textField11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(radioButton3)
+                                .addComponent(radioButton4))
+                            .addGap(31, 31, 31)
+                            .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label29)
+                                .addComponent(label31)
+                                .addComponent(label33)
+                                .addComponent(textField9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textField10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboBox3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                            .addGroup(bookAlterPanelLayout.createParallelGroup()
+                                .addComponent(label34)
+                                .addComponent(scrollPane7, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
+                            .addGap(49, 49, 49)
+                            .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(button5)
+                                .addComponent(button6))
+                            .addGap(28, 28, 28))
                 );
             }
             mianFormContentPane.add(bookAlterPanel, "card5");
@@ -620,10 +1192,68 @@ public class mainPanel {
     private JPanel picPanelThree;
     private JLabel three;
     private JPanel alterPanel;
+    private JLabel label3;
+    private JTextField alterSearchText;
+    private JButton alterSearchButton;
+    private JScrollPane scrollPane2;
+    private JTable alterPanelTable;
+    private JLabel label7;
+    private JLabel label8;
+    private JLabel label9;
+    private JLabel textLablell;
+    private JScrollPane scrollPane3;
+    private JTextArea 描述;
+    private JButton alterTypeButton;
+    private JButton deleteTypeButton;
+    private JTextField 图书类别名称;
+    private JTextField alterPanelID;
     private JPanel bookAddPanel;
     private JLabel label2;
+    private JLabel label10;
+    private JLabel label11;
+    private JLabel label12;
+    private JLabel label13;
+    private JLabel label14;
+    private JScrollPane scrollPane4;
+    private JTextArea textArea1;
+    private JButton button1;
+    private JButton button2;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JTextField textField3;
+    private JComboBox comboBox1;
+    private JRadioButton radioButton1;
+    private JRadioButton radioButton2;
     private JPanel bookAlterPanel;
-    private JLabel label1;
+    private JLabel label15;
+    private JLabel label16;
+    private JLabel label17;
+    private JLabel label18;
+    private JTextField bookName;
+    private JTextField bookauthor;
+    private JButton bookAlterSearch;
+    private JComboBox comboBox2;
+    private JScrollPane scrollPane6;
+    private JTable table1;
+    private JLabel label27;
+    private JLabel label28;
+    private JLabel label29;
+    private JLabel label30;
+    private JLabel label31;
+    private JLabel label32;
+    private JLabel label33;
+    private JLabel label34;
+    private JScrollPane scrollPane7;
+    private JTextArea textArea2;
+    private JButton button5;
+    private JButton button6;
+    private JTextField textField8;
+    private JTextField textField9;
+    private JTextField textField10;
+    private JTextField textField11;
+    private JRadioButton radioButton3;
+    private JRadioButton radioButton4;
+    private JComboBox comboBox3;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     public static void main(String[] args) {
         new mainPanel();

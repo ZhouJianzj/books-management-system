@@ -8,13 +8,13 @@ new FormModel {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.CardLayout ) ) {
 			name: "mianForm"
 			"visible": true
-			"defaultCloseOperation": 3
+			"defaultCloseOperation": 0
 			"title": "BOOKS-MANAGEMENT-SYSTEM"
 			"$sizePolicy": 1
 			"resizable": false
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:185:p, comp label5:::p:607:p, space ::226:x}}"
-				"$verticalGroup": "par l {seq l {space :p:121:p, comp label5:::p:156:p, space ::453:x}}"
+				"$horizontalGroup": "par l {seq t {space ::217:x, comp label5:::p:607:p, space :p:194:p}}"
+				"$verticalGroup": "par l {seq l {space :p:224:p, comp label5:::p:156:p, space ::350:x}}"
 			} ) {
 				name: "welcome"
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -124,33 +124,282 @@ new FormModel {
 				"value": "card2"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {space :0:1018:x}"
-				"$verticalGroup": "par l {space :0:730:x}"
+				"$horizontalGroup": "par l {seq t {par t {seq {space :0:175:x, comp scrollPane2:::p:671:p}, seq t {space :p:149:p, comp deleteTypeButton:::p::p, space ::469:x, comp alterTypeButton:::p::p}}, space :p:172:p}, seq {par l {seq l {space :p:212:p, par l {seq l {comp label8:::p::p, space :p:56:p, comp alterPanelID:::p:85:p, space :p:116:p, comp textLablell:::p::p, space u:::p, comp 图书类别名称:::p:231:p}, seq l {comp label9:::p::p, space s:::p, comp scrollPane3:::p:517:p}}}, seq l {space :p:220:p, comp label3:::p:151:p, space s:::p, comp alterSearchText:::p:225:p, space :p:56:p, comp alterSearchButton:::p:94:p}, seq l {space :p:71:p, comp label7:::p:231:p}}, space ::186:x}}"
+				"$verticalGroup": "par l {seq l {space :p:70:p, par b {comp alterSearchButton::b:p::p, comp alterSearchText::b:p::p, comp label3::b:p:30:p}, space :p:43:p, comp scrollPane2:::p:194:p, space :p:44:p, comp label7:::p:29:p, space s:::p, par b {comp label8::b:p::p, comp 图书类别名称::b:p::p, comp textLablell::b:p::p, comp alterPanelID::b:p::p}, space :p:31:p, par l {comp label9:::p::p, comp scrollPane3:::p:87:p}, space :p:51:p, par b {comp alterTypeButton::b:p::p, comp deleteTypeButton::b:p::p}, space ::75:x}}"
 			} ) {
 				name: "alterPanel"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": new FormMessage( null, "label3.text" )
+					"horizontalAlignment": 0
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "alterSearchText"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "alterSearchButton"
+					"text": "搜索"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/sousuo.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "alterSearchButtonActionPerformed", true ) )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane2"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "alterPanelTable"
+						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector, new java.util.Vector {
+							add( "编号" )
+							add( "图书类别名称" )
+							add( "图书类别描述" )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+						}, new java.util.Vector {
+							add( false )
+							add( false )
+							add( false )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+						} )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "alterPanelTableMousePressed", true ) )
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label7"
+					"text": new FormMessage( null, "label7.text" )
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 16 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label8"
+					"text": new FormMessage( null, "label8.text" )
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 12 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label9"
+					"text": new FormMessage( null, "label9.text" )
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 12 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "textLablell"
+					"text": new FormMessage( null, "textLablell.text" )
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 12 )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane3"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "描述"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "alterTypeButton"
+					"text": new FormMessage( null, "alterTypeButton.text" )
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/xiugai.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "alterTypeAddButtonActionPerformed", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "deleteTypeButton"
+					"text": new FormMessage( null, "deleteTypeButton.text" )
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/chushaixuanxiang.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "deleteTypeButtonActionPerformed", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "图书类别名称"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "alterPanelID"
+					"horizontalAlignment": 0
+					"editable": false
+				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "card3"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:290:p, comp label2:::p::p, space ::680:x}}"
-				"$verticalGroup": "par l {seq l {space :p:171:p, comp label2:::p::p, space ::542:x}}"
+				"$horizontalGroup": "par l {seq l {space :p:210:p, par l {seq {comp button2:::p::p, space ::375:x, comp button1:::p::p, space :p:213:p}, seq {par t {comp label14:::p::p, comp label10:::p::p, comp label2:::p::p, comp label13::t:p::p}, space :p:26:p, par l {seq {par l {seq {space :p:10:p, par l {comp textField1:::p:178:p, comp comboBox1:::::x}, space :p:64:p}, seq l {comp radioButton1:::p::p, space s:::p, comp radioButton2:::p::p, space ::153:x}}, par l:::p {seq {comp label11:::p::p, space s:::p, comp textField2:::p:192:p}, seq {comp label12:::p::p, space s:::p, comp textField3:::::x}}}, comp scrollPane4:::p:413:p}, space ::193:x}}}}"
+				"$verticalGroup": "par l {seq l {space :p:82:p, par b {comp label2::b:p::p, comp label11::b:p::p, comp textField1::b:p::p, comp textField2::b:p::p}, space :p:90:p, par b {comp label10::b:p::p, comp label12::b:p::p, comp textField3::b:p::p, comp radioButton1::b:p::p, comp radioButton2::b:p::p}, space :p:59:p, par b {comp label13::b:p::p, comp comboBox1::b:p::p}, space :p:73:p, par l {seq {comp label14:::p::p, space ::207:x, par b {comp button1::b:p::p, comp button2::b:p::p}, space :p:89:p}, seq {comp scrollPane4:::p:153:p, space ::190:x}}}}"
 			} ) {
 				name: "bookAddPanel"
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label2"
 					"text": new FormMessage( null, "label2.text" )
 				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label10"
+					"text": new FormMessage( null, "label10.text" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label11"
+					"text": new FormMessage( null, "label11.text" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label12"
+					"text": new FormMessage( null, "label12.text" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label13"
+					"text": new FormMessage( null, "label13.text" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label14"
+					"text": new FormMessage( null, "label14.text" )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane4"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "textArea1"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": new FormMessage( null, "button1.text" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/jiashang.png" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button2"
+					"text": new FormMessage( null, "button2.text" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/miaoshu.png" )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField1"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField2"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField3"
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "comboBox1"
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "radioButton1"
+					"text": new FormMessage( null, "radioButton1.text" )
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "radioButton2"
+					"text": new FormMessage( null, "radioButton2.text" )
+				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "card4"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:280:p, comp label1:::p:186:p, space ::552:x}}"
-				"$verticalGroup": "par l {seq l {space :p:153:p, comp label1:::p::p, space ::560:x}}"
+				"$horizontalGroup": "par l {seq {par l {seq {space :p:49:p, par l {comp label15:::p::p, comp label27:::p::p}}, par t:l {seq l {space :p:106:p, par l {seq l {par t {par l {comp label28:::p::p, comp label29:::p::p}, comp label34:::p::p}, space s:::p, par l:::p {seq {par l {comp textField8:::p:184:p, comp textField9:::p:99:p}, space :p:37:p, par l {seq l {comp label31:::p::p, space u:::p, comp textField10:::p:118:p}, seq l {comp label30:::p::p, space u:::p, comp textField11:::p:198:p}}, space :p:29:p, par l {seq l {comp label32:::p::p, space s:::p, comp radioButton3:::p::p, space :::p, comp radioButton4:::p::p}, seq l {comp label33:::p::p, space :::p, comp comboBox3:::p:141:p}}}, comp scrollPane7:::::x}}, seq l {comp button5:::p::p, space ::626:x, comp button6:::p::p}}}, seq l {space :p:117:p, par l:::p {comp scrollPane6:::::x, seq {comp label16:::p::p, space :::p, comp bookName:::p:171:p, space u:::p, comp label17:::p::p, space :::p, comp bookauthor:::p:150:p, space :p:24:p, comp label18:::p::p, space :::p, comp comboBox2:::p:133:p, space s:::p, comp bookAlterSearch:::p::p}}}}}, space :p:66:p}}"
+				"$verticalGroup": "par l {seq l {space :p:43:p, comp label15:::p::p, space :p:35:p, par b {comp label17::b:p::p, comp bookauthor::b:p::p, comp bookAlterSearch::b:p::p, comp label16::b:p::p, comp comboBox2::b:p::p, comp label18::b:p::p, comp bookName::b:p::p}, space s:::p, comp scrollPane6:::p:177:p, space :p:61:p, comp label27:::p::p, space :p:28:p, par b {comp label28::b:p::p, comp label30::b:p::p, comp label32::b:p::p, comp textField8::b:p::p, comp textField11::b:p::p, comp radioButton3::b:p::p, comp radioButton4::b:p::p}, space :p:31:p, par b {comp label29::b:p::p, comp label31::b:p::p, comp label33::b:p::p, comp textField9::b:p::p, comp textField10::b:p::p, comp comboBox3::b:p::p}, space ::17:x, par l {comp label34:::p::p, comp scrollPane7:::p:89:p}, space :p:49:p, par b {comp button5::b:p::p, comp button6::b:p::p}, space :p:28:p}}"
 			} ) {
 				name: "bookAlterPanel"
+				"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label1"
-					"text": new FormMessage( null, "label1.text" )
+					name: "label15"
+					"text": new FormMessage( null, "label15.text" )
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label16"
+					"text": new FormMessage( null, "label16.text" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label17"
+					"text": new FormMessage( null, "label17.text" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label18"
+					"text": new FormMessage( null, "label18.text" )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "bookName"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "bookauthor"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "bookAlterSearch"
+					"text": new FormMessage( null, "bookAlterSearch.text" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/sousuo.png" )
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "comboBox2"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane6"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "table1"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label27"
+					"text": new FormMessage( null, "label27.text" )
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label28"
+					"text": new FormMessage( null, "label28.text" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label29"
+					"text": new FormMessage( null, "label29.text" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label30"
+					"text": new FormMessage( null, "label30.text" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label31"
+					"text": new FormMessage( null, "label31.text" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label32"
+					"text": new FormMessage( null, "label32.text" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label33"
+					"text": new FormMessage( null, "label33.text" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label34"
+					"text": new FormMessage( null, "label34.text" )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane7"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "textArea2"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button5"
+					"text": new FormMessage( null, "button5.text" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/chushaixuanxiang.png" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button6"
+					"text": new FormMessage( null, "button6.text" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/xiugai.png" )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField8"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField9"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField10"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField11"
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "radioButton3"
+					"text": new FormMessage( null, "radioButton3.text" )
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "radioButton4"
+					"text": new FormMessage( null, "radioButton4.text" )
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "comboBox3"
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "card5"
@@ -208,7 +457,7 @@ new FormModel {
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 365 )
+			"location": new java.awt.Point( 0, 315 )
 			"size": new java.awt.Dimension( 1020, 800 )
 		} )
 	}
