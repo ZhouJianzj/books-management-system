@@ -2,19 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb73e236-64e8-4865-b0c1-438729f824de" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/alterBookTypeManager/alterSearch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/alterBookTypeManager/alterType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/alterBookTypeManager/deleteType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/alterBookTypeManager/showTableData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/pic/login/yanhua.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/alterBookTypeManager/CheckExist.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/booAddPanel/addBookDoAdd.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/booAddPanel/getJComboxData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/LoginDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/LoginDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/login/login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/login/login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/mainPanel/mainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/mainPanel/mainPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/mainPanel/mainPanel.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/mainPanel/mainPanel.jfd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/pic/login/bg1.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dao/LoginDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/LoginDao.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,13 +66,13 @@
       <recent name="C:\Users\Administrator\Desktop\student-manager\com\books-management\src\main\java\view" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.mainPanel">
-    <configuration name="alterSearch" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.alterBookTypeManager.alterSearch" />
+  <component name="RunManager" selected="Application.login">
+    <configuration name="addBookDoAdd" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.booAddPanel.addBookDoAdd" />
       <module name="books-management" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dao.alterBookTypeManager.*" />
+          <option name="PATTERN" value="dao.booAddPanel.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -98,12 +93,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="deleteType" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.alterBookTypeManager.deleteType" />
+    <configuration name="getJComboxData" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.booAddPanel.getJComboxData" />
       <module name="books-management" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dao.alterBookTypeManager.*" />
+          <option name="PATTERN" value="dao.booAddPanel.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -139,11 +134,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.mainPanel" />
         <item itemvalue="Application.login" />
+        <item itemvalue="Application.mainPanel" />
+        <item itemvalue="Application.getJComboxData" />
+        <item itemvalue="Application.addBookDoAdd" />
         <item itemvalue="Application.alterType" />
-        <item itemvalue="Application.deleteType" />
-        <item itemvalue="Application.alterSearch" />
       </list>
     </recent_temporary>
   </component>
@@ -167,6 +162,9 @@
       <workItem from="1612365281474" duration="3779000" />
       <workItem from="1612418270735" duration="1623000" />
       <workItem from="1612420374656" duration="20318000" />
+      <workItem from="1612451724497" duration="224000" />
+      <workItem from="1612491889735" duration="4149000" />
+      <workItem from="1612503146649" duration="13847000" />
     </task>
     <servers />
   </component>
@@ -182,42 +180,46 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612340511077" />
-    <state width="1776" height="193" key="GridCell.Tab.0.bottom" timestamp="1612451195753">
+    <state width="1776" height="269" key="GridCell.Tab.0.bottom" timestamp="1612515275007">
       <screen x="0" y="0" width="1819" height="1080" />
     </state>
     <state width="1323" height="105" key="GridCell.Tab.0.bottom/-1366.243.1265.768/0.0.1819.1080@-1366.243.1265.768" timestamp="1612436244359" />
-    <state width="1776" height="193" key="GridCell.Tab.0.bottom/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612451195753" />
+    <state width="1776" height="269" key="GridCell.Tab.0.bottom/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612513326893" />
     <state width="1323" height="159" key="GridCell.Tab.0.bottom/-1366.243.1366.728/0.0.1920.1040@-1366.243.1366.728" timestamp="1612353233704" />
     <state width="1877" height="159" key="GridCell.Tab.0.bottom/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612352818967" />
-    <state width="1323" height="133" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1612348463145" />
-    <state width="1776" height="193" key="GridCell.Tab.0.bottom/0.0.1819.1080@0.0.1819.1080" timestamp="1612448084327" />
-    <state width="1776" height="193" key="GridCell.Tab.0.center" timestamp="1612451195753">
+    <state width="1222" height="114" key="GridCell.Tab.0.bottom/0.0.1265.768@0.0.1265.768" timestamp="1612492809756" />
+    <state width="1323" height="85" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1612496247187" />
+    <state width="1776" height="269" key="GridCell.Tab.0.bottom/0.0.1819.1080@0.0.1819.1080" timestamp="1612515275007" />
+    <state width="1776" height="269" key="GridCell.Tab.0.center" timestamp="1612515275007">
       <screen x="0" y="0" width="1819" height="1080" />
     </state>
     <state width="1323" height="105" key="GridCell.Tab.0.center/-1366.243.1265.768/0.0.1819.1080@-1366.243.1265.768" timestamp="1612436244358" />
-    <state width="1776" height="193" key="GridCell.Tab.0.center/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612451195753" />
+    <state width="1776" height="269" key="GridCell.Tab.0.center/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612513326893" />
     <state width="1323" height="159" key="GridCell.Tab.0.center/-1366.243.1366.728/0.0.1920.1040@-1366.243.1366.728" timestamp="1612353233703" />
     <state width="1877" height="159" key="GridCell.Tab.0.center/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612352818967" />
-    <state width="1323" height="133" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1612348463145" />
-    <state width="1776" height="193" key="GridCell.Tab.0.center/0.0.1819.1080@0.0.1819.1080" timestamp="1612448084327" />
-    <state width="1776" height="193" key="GridCell.Tab.0.left" timestamp="1612451195753">
+    <state width="1222" height="114" key="GridCell.Tab.0.center/0.0.1265.768@0.0.1265.768" timestamp="1612492809756" />
+    <state width="1323" height="85" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1612496247187" />
+    <state width="1776" height="269" key="GridCell.Tab.0.center/0.0.1819.1080@0.0.1819.1080" timestamp="1612515275007" />
+    <state width="1776" height="269" key="GridCell.Tab.0.left" timestamp="1612515275007">
       <screen x="0" y="0" width="1819" height="1080" />
     </state>
     <state width="1323" height="105" key="GridCell.Tab.0.left/-1366.243.1265.768/0.0.1819.1080@-1366.243.1265.768" timestamp="1612436244358" />
-    <state width="1776" height="193" key="GridCell.Tab.0.left/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612451195753" />
+    <state width="1776" height="269" key="GridCell.Tab.0.left/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612513326893" />
     <state width="1323" height="159" key="GridCell.Tab.0.left/-1366.243.1366.728/0.0.1920.1040@-1366.243.1366.728" timestamp="1612353233703" />
     <state width="1877" height="159" key="GridCell.Tab.0.left/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612352818967" />
-    <state width="1323" height="133" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1612348463144" />
-    <state width="1776" height="193" key="GridCell.Tab.0.left/0.0.1819.1080@0.0.1819.1080" timestamp="1612448084326" />
-    <state width="1776" height="193" key="GridCell.Tab.0.right" timestamp="1612451195753">
+    <state width="1222" height="114" key="GridCell.Tab.0.left/0.0.1265.768@0.0.1265.768" timestamp="1612492809754" />
+    <state width="1323" height="85" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1612496247187" />
+    <state width="1776" height="269" key="GridCell.Tab.0.left/0.0.1819.1080@0.0.1819.1080" timestamp="1612515275007" />
+    <state width="1776" height="269" key="GridCell.Tab.0.right" timestamp="1612515275007">
       <screen x="0" y="0" width="1819" height="1080" />
     </state>
     <state width="1323" height="105" key="GridCell.Tab.0.right/-1366.243.1265.768/0.0.1819.1080@-1366.243.1265.768" timestamp="1612436244358" />
-    <state width="1776" height="193" key="GridCell.Tab.0.right/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612451195753" />
+    <state width="1776" height="269" key="GridCell.Tab.0.right/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612513326893" />
     <state width="1323" height="159" key="GridCell.Tab.0.right/-1366.243.1366.728/0.0.1920.1040@-1366.243.1366.728" timestamp="1612353233703" />
     <state width="1877" height="159" key="GridCell.Tab.0.right/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612352818967" />
-    <state width="1323" height="133" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1612348463145" />
-    <state width="1776" height="193" key="GridCell.Tab.0.right/0.0.1819.1080@0.0.1819.1080" timestamp="1612448084327" />
+    <state width="1222" height="114" key="GridCell.Tab.0.right/0.0.1265.768@0.0.1265.768" timestamp="1612492809756" />
+    <state width="1323" height="85" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1612496247187" />
+    <state width="1776" height="269" key="GridCell.Tab.0.right/0.0.1819.1080@0.0.1819.1080" timestamp="1612515275007" />
     <state x="540" y="255" width="840" height="530" key="IDE.errors.dialog" timestamp="1612334235969">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

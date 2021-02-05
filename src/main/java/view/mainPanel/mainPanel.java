@@ -8,12 +8,14 @@ import java.beans.*;
 import javax.lang.model.element.VariableElement;
 import javax.swing.table.*;
 
-import dao.alterBookTypeManager.alterSearch;
-import dao.alterBookTypeManager.alterType;
-import dao.alterBookTypeManager.deleteType;
-import dao.alterBookTypeManager.showTableData;
+import dao.alterBookTypeManager.*;
+import dao.booAddPanel.addBookDoAdd;
+import dao.booAddPanel.getJComboxData;
 import dao.bookTypeManager.LoadingSearch;
 import dao.bookTypeManager.bookTypeAdd;
+import jdk.nashorn.internal.objects.NativeUint8Array;
+import jdk.nashorn.internal.scripts.JO;
+import model.Book;
 import model.BookType;
 
 import java.awt.*;
@@ -61,6 +63,7 @@ public class mainPanel {
     private void bookAddMenuActionPerformed(ActionEvent e) {
         // TODO add your code here
         cut("card4");
+        jComboBoxData();
     }
 
     /**
@@ -236,16 +239,19 @@ public class mainPanel {
         if (alterPanelID.getText() == null || "".equals(alterPanelID.getText())) {
             JOptionPane.showMessageDialog(alterPanel,"没有选择要删除的图书类别！");
         }else if (JOptionPane.showConfirmDialog(alterPanel, "是否确认删除！") == 0) {
-            System.out.println(alterPanelID.getText());
-                    deleteType deleteType = new deleteType();
-                    int i = deleteType.deleteData(alterPanelID);
-                    if (i == 1) {
-                        getTableData();
-                        alterPanelID.setText("");
-                        图书类别名称.setText("");
-                        描述.setText("");
-                        JOptionPane.showMessageDialog(alterPanel, "删除成功！");
-                    }
+            if(new CheckExist().checkDeleteData(alterPanelID)){
+                JOptionPane.showMessageDialog(alterPanel,"该图书类别下有图书，不可以删除！");
+            }else{
+                deleteType deleteType = new deleteType();
+                int i = deleteType.deleteData(alterPanelID);
+                if (i == 1) {
+                    getTableData();
+                    alterPanelID.setText("");
+                    图书类别名称.setText("");
+                    描述.setText("");
+                    JOptionPane.showMessageDialog(alterPanel, "删除成功！");
+                }
+            }
         }
     }
 
@@ -280,6 +286,69 @@ public class mainPanel {
         alterPanelID.setText((String)alterPanelTable.getValueAt(selectedRow,0));
         图书类别名称.setText((String)alterPanelTable.getValueAt(selectedRow,1));
         描述.setText((String)alterPanelTable.getValueAt(selectedRow,2));
+    }
+
+    /**
+     * 设置图书类别的下拉框数据
+     */
+    public void jComboBoxData(){
+        getJComboxData getJComboxData = new getJComboxData();
+        getJComboxData.getData(addBookType);
+    }
+    /**
+     * bookAddPanel面板中的添加按钮事件
+     * @param e
+     */
+    private void addBookAddActionPerformed(ActionEvent e) {
+        // TODO add your code here
+        //获取到性别选中的数据转换成1或者0
+        //还需要设置JCombox的选择栏目的内容
+
+        if (addBookName.getText() == null || addBookAuthor.getText() == null || addBookPrice.getText() ==null ||
+        addBookDesc.getText() == null ||"".equals(addBookName.getText())||"".equals(addBookAuthor.getText())||
+                "".equals(addBookPrice.getText())||"".equals( addBookDesc.getText())){
+            JOptionPane.showMessageDialog(bookAddPanel,"请务必填写相关书籍信息！");
+        }else{
+            String sm = null;
+            if(addSex.getText() != null){
+                sm = "0";
+            }
+            if (addMan.getText() !=null){
+                sm = "1";
+            }
+            addBookDoAdd add = new addBookDoAdd();
+            Book book = new Book();
+            book.setBookName(addBookName.getText());
+            book.setBookauthor(addBookAuthor.getText());
+            book.setGender(sm);
+            book.setBookPrice(Double.parseDouble(addBookPrice.getText()));
+            book.setBookType(addBookType.getSelectedItem().toString());
+            book.setBookDesc(addBookDesc.getText());
+            boolean b = add.doAddCheck(book);
+            if (b != true){
+                System.out.println(b);
+                JOptionPane.showMessageDialog(bookAddPanel,"有重复的书籍存在了！");
+            }else{
+                boolean b1 = add.doAdd(book);
+                if (b1){
+                    JOptionPane.showMessageDialog(bookAddPanel,"添加成功");
+                }
+            }
+        }
+
+
+    }
+
+    /**
+     * bookAddpanel中的重置按钮
+     * @param e
+     */
+    private void addBookResertActionPerformed(ActionEvent e) {
+        // TODO add your code here
+        addBookName.setText("");
+        addBookAuthor.setText("");
+        addBookPrice.setText("");
+        addBookDesc.setText("");
     }
 
     private void initComponents() {
@@ -341,15 +410,15 @@ public class mainPanel {
         label13 = new JLabel();
         label14 = new JLabel();
         scrollPane4 = new JScrollPane();
-        textArea1 = new JTextArea();
-        button1 = new JButton();
-        button2 = new JButton();
-        textField1 = new JTextField();
-        textField2 = new JTextField();
-        textField3 = new JTextField();
-        comboBox1 = new JComboBox();
-        radioButton1 = new JRadioButton();
-        radioButton2 = new JRadioButton();
+        addBookDesc = new JTextArea();
+        addBookAdd = new JButton();
+        addBookResert = new JButton();
+        addBookName = new JTextField();
+        addBookAuthor = new JTextField();
+        addBookPrice = new JTextField();
+        addBookType = new JComboBox();
+        addSex = new JRadioButton();
+        addMan = new JRadioButton();
         bookAlterPanel = new JPanel();
         label15 = new JLabel();
         label16 = new JLabel();
@@ -484,12 +553,11 @@ public class mainPanel {
 
             //======== welcome ========
             {
-                welcome.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
-                border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER
-                ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font
-                . BOLD ,12 ) ,java . awt. Color .red ) ,welcome. getBorder () ) ); welcome. addPropertyChangeListener(
-                new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r"
-                .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+                welcome.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
+                0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
+                . BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
+                red) ,welcome. getBorder( )) ); welcome. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
+                beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 
                 //---- label5 ----
                 label5.setText(bundle.getString("label5.text"));
@@ -845,40 +913,61 @@ public class mainPanel {
 
                 //---- label2 ----
                 label2.setText(bundle.getString("label2.text"));
+                label2.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
 
                 //---- label10 ----
                 label10.setText(bundle.getString("label10.text"));
+                label10.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
 
                 //---- label11 ----
                 label11.setText(bundle.getString("label11.text"));
+                label11.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
 
                 //---- label12 ----
                 label12.setText(bundle.getString("label12.text"));
+                label12.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
 
                 //---- label13 ----
                 label13.setText(bundle.getString("label13.text"));
+                label13.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
 
                 //---- label14 ----
                 label14.setText(bundle.getString("label14.text"));
+                label14.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
 
                 //======== scrollPane4 ========
                 {
-                    scrollPane4.setViewportView(textArea1);
+                    scrollPane4.setViewportView(addBookDesc);
                 }
 
-                //---- button1 ----
-                button1.setText(bundle.getString("button1.text"));
-                button1.setIcon(new ImageIcon(getClass().getResource("/pic/login/jiashang.png")));
+                //---- addBookAdd ----
+                addBookAdd.setText(bundle.getString("addBookAdd.text"));
+                addBookAdd.setIcon(new ImageIcon(getClass().getResource("/pic/login/jiashang.png")));
+                addBookAdd.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+                addBookAdd.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        addBookAddActionPerformed(e);
+                    }
+                });
 
-                //---- button2 ----
-                button2.setText(bundle.getString("button2.text"));
-                button2.setIcon(new ImageIcon(getClass().getResource("/pic/login/miaoshu.png")));
+                //---- addBookResert ----
+                addBookResert.setText(bundle.getString("addBookResert.text"));
+                addBookResert.setIcon(new ImageIcon(getClass().getResource("/pic/login/miaoshu.png")));
+                addBookResert.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
+                addBookResert.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        addBookResertActionPerformed(e);
+                    }
+                });
 
-                //---- radioButton1 ----
-                radioButton1.setText(bundle.getString("radioButton1.text"));
+                //---- addSex ----
+                addSex.setText(bundle.getString("addSex.text"));
 
-                //---- radioButton2 ----
-                radioButton2.setText(bundle.getString("radioButton2.text"));
+                //---- addMan ----
+                addMan.setText(bundle.getString("addMan.text"));
+                addMan.setSelected(true);
 
                 GroupLayout bookAddPanelLayout = new GroupLayout(bookAddPanel);
                 bookAddPanel.setLayout(bookAddPanelLayout);
@@ -888,42 +977,44 @@ public class mainPanel {
                             .addGap(210, 210, 210)
                             .addGroup(bookAddPanelLayout.createParallelGroup()
                                 .addGroup(bookAddPanelLayout.createSequentialGroup()
-                                    .addComponent(button2)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
-                                    .addComponent(button1)
-                                    .addGap(213, 213, 213))
-                                .addGroup(bookAddPanelLayout.createSequentialGroup()
                                     .addGroup(bookAddPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(label14)
-                                        .addComponent(label10)
                                         .addComponent(label2)
-                                        .addComponent(label13))
-                                    .addGap(26, 26, 26)
+                                        .addComponent(label10)
+                                        .addComponent(label13)
+                                        .addComponent(label14))
+                                    .addGap(18, 18, 18)
                                     .addGroup(bookAddPanelLayout.createParallelGroup()
                                         .addGroup(bookAddPanelLayout.createSequentialGroup()
+                                            .addComponent(addSex)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(addMan)
+                                            .addContainerGap(636, Short.MAX_VALUE))
+                                        .addGroup(bookAddPanelLayout.createSequentialGroup()
+                                            .addGap(15, 15, 15)
                                             .addGroup(bookAddPanelLayout.createParallelGroup()
                                                 .addGroup(bookAddPanelLayout.createSequentialGroup()
-                                                    .addGap(10, 10, 10)
+                                                    .addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 423, GroupLayout.PREFERRED_SIZE)
+                                                    .addContainerGap(292, Short.MAX_VALUE))
+                                                .addGroup(bookAddPanelLayout.createSequentialGroup()
+                                                    .addGroup(bookAddPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(addBookType, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(addBookName, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
+                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                                                     .addGroup(bookAddPanelLayout.createParallelGroup()
-                                                        .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(comboBox1))
-                                                    .addGap(64, 64, 64))
-                                                .addGroup(bookAddPanelLayout.createSequentialGroup()
-                                                    .addComponent(radioButton1)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(radioButton2)
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)))
-                                            .addGroup(bookAddPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(bookAddPanelLayout.createSequentialGroup()
-                                                    .addComponent(label11)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(textField2, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(bookAddPanelLayout.createSequentialGroup()
-                                                    .addComponent(label12)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(textField3))))
-                                        .addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 413, GroupLayout.PREFERRED_SIZE))
-                                    .addContainerGap(193, Short.MAX_VALUE))))
+                                                        .addGroup(bookAddPanelLayout.createSequentialGroup()
+                                                            .addComponent(label11)
+                                                            .addGap(18, 18, 18)
+                                                            .addComponent(addBookAuthor, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(bookAddPanelLayout.createSequentialGroup()
+                                                            .addComponent(label12)
+                                                            .addGap(18, 18, 18)
+                                                            .addComponent(addBookPrice, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)))
+                                                    .addGap(199, 199, 199))))))
+                                .addGroup(bookAddPanelLayout.createSequentialGroup()
+                                    .addComponent(addBookResert)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 369, Short.MAX_VALUE)
+                                    .addComponent(addBookAdd)
+                                    .addGap(219, 219, 219))))
                 );
                 bookAddPanelLayout.setVerticalGroup(
                     bookAddPanelLayout.createParallelGroup()
@@ -932,31 +1023,28 @@ public class mainPanel {
                             .addGroup(bookAddPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(label2)
                                 .addComponent(label11)
-                                .addComponent(textField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addGap(90, 90, 90)
+                                .addComponent(addBookName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addBookAuthor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(55, 55, 55)
                             .addGroup(bookAddPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(label10)
+                                .addComponent(addSex)
                                 .addComponent(label12)
-                                .addComponent(textField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(radioButton1)
-                                .addComponent(radioButton2))
-                            .addGap(59, 59, 59)
+                                .addComponent(addMan)
+                                .addComponent(addBookPrice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(46, 46, 46)
                             .addGroup(bookAddPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(label13)
-                                .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addGap(73, 73, 73)
+                                .addComponent(addBookType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(75, 75, 75)
                             .addGroup(bookAddPanelLayout.createParallelGroup()
-                                .addGroup(bookAddPanelLayout.createSequentialGroup()
-                                    .addComponent(label14)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
-                                    .addGroup(bookAddPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(button1)
-                                        .addComponent(button2))
-                                    .addGap(89, 89, 89))
-                                .addGroup(bookAddPanelLayout.createSequentialGroup()
-                                    .addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
-                                    .addContainerGap(190, Short.MAX_VALUE))))
+                                .addComponent(label14)
+                                .addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                            .addGroup(bookAddPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(addBookResert)
+                                .addComponent(addBookAdd))
+                            .addGap(98, 98, 98))
                 );
             }
             mianFormContentPane.add(bookAddPanel, "card4");
@@ -1155,6 +1243,11 @@ public class mainPanel {
             mianForm.setSize(1020, 800);
             mianForm.setLocationRelativeTo(mianForm.getOwner());
         }
+
+        //---- buttonGroup1 ----
+        ButtonGroup buttonGroup1 = new ButtonGroup();
+        buttonGroup1.add(addSex);
+        buttonGroup1.add(addMan);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
@@ -1215,15 +1308,15 @@ public class mainPanel {
     private JLabel label13;
     private JLabel label14;
     private JScrollPane scrollPane4;
-    private JTextArea textArea1;
-    private JButton button1;
-    private JButton button2;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JComboBox comboBox1;
-    private JRadioButton radioButton1;
-    private JRadioButton radioButton2;
+    private JTextArea addBookDesc;
+    private JButton addBookAdd;
+    private JButton addBookResert;
+    private JTextField addBookName;
+    private JTextField addBookAuthor;
+    private JTextField addBookPrice;
+    private JComboBox addBookType;
+    private JRadioButton addSex;
+    private JRadioButton addMan;
     private JPanel bookAlterPanel;
     private JLabel label15;
     private JLabel label16;
