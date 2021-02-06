@@ -1,3 +1,7 @@
+import model.Book;
+
+import javax.swing.*;
+
 /**
  * @ClassName TT
  * @Description TODO
@@ -6,11 +10,25 @@
  **/
 public class TT {
     public static void main(String[] args) {
-        if (true){
-            System.out.println("true");
-        }else{
-            System.out.println("执行了");
+        Book book = new Book();
+        book.setBookName("zhoujian");
+        book.setBookPrice(1);
+        book.setBookauthor("zhoujian");
+        String name = book.getBookName();
+        String bookauthor = book.getBookauthor();
+        double bookPrice = book.getBookPrice();
+
+        if (name.equals(name)) {
+            if (bookauthor.equals(bookauthor)) {
+                if (bookPrice==bookPrice) {
+                    System.out.println("=================================================");
+                                return;
+
+                }
+            }
         }
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++");
 
     }
+
 }

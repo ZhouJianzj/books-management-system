@@ -5,25 +5,24 @@
 package view.mainPanel;
 
 import java.beans.*;
-import javax.lang.model.element.VariableElement;
 import javax.swing.table.*;
 
 import dao.alterBookTypeManager.*;
 import dao.booAddPanel.addBookDoAdd;
 import dao.booAddPanel.getJComboxData;
+import dao.bookAlterPanel.SearchBooks;
+import dao.bookAlterPanel.alterBooks;
+import dao.bookAlterPanel.deleteBooks;
+import dao.bookAlterPanel.showBookData;
 import dao.bookTypeManager.LoadingSearch;
 import dao.bookTypeManager.bookTypeAdd;
-import jdk.nashorn.internal.objects.NativeUint8Array;
-import jdk.nashorn.internal.scripts.JO;
 import model.Book;
 import model.BookType;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
-import javax.smartcardio.Card;
 import javax.swing.*;
 import javax.swing.Timer;
 
@@ -33,7 +32,6 @@ import javax.swing.Timer;
 public class mainPanel {
     public mainPanel() {
         initComponents();
-
     }
 
     /**
@@ -63,7 +61,8 @@ public class mainPanel {
     private void bookAddMenuActionPerformed(ActionEvent e) {
         // TODO add your code here
         cut("card4");
-        jComboBoxData();
+        jComboBoxData(addBookType);
+
     }
 
     /**
@@ -73,6 +72,9 @@ public class mainPanel {
     private void bookAlterMenuActionPerformed(ActionEvent e) {
         // TODO add your code here
         cut("card5");
+        jComboBoxData(bookTypeCombox);
+        jComboBoxData(comboBox3);
+        flush();
     }
 
     /**
@@ -291,9 +293,9 @@ public class mainPanel {
     /**
      * 设置图书类别的下拉框数据
      */
-    public void jComboBoxData(){
+    private void jComboBoxData(JComboBox jComboBox){
         getJComboxData getJComboxData = new getJComboxData();
-        getJComboxData.getData(addBookType);
+        getJComboxData.getData(jComboBox);
     }
     /**
      * bookAddPanel面板中的添加按钮事件
@@ -310,10 +312,10 @@ public class mainPanel {
             JOptionPane.showMessageDialog(bookAddPanel,"请务必填写相关书籍信息！");
         }else{
             String sm = null;
-            if(addSex.getText() != null){
+            if(addSex.isSelected()){
                 sm = "0";
             }
-            if (addMan.getText() !=null){
+            if (addMan.isSelected()){
                 sm = "1";
             }
             addBookDoAdd add = new addBookDoAdd();
@@ -326,7 +328,7 @@ public class mainPanel {
             book.setBookDesc(addBookDesc.getText());
             boolean b = add.doAddCheck(book);
             if (b != true){
-                System.out.println(b);
+
                 JOptionPane.showMessageDialog(bookAddPanel,"有重复的书籍存在了！");
             }else{
                 boolean b1 = add.doAdd(book);
@@ -351,6 +353,134 @@ public class mainPanel {
         addBookDesc.setText("");
     }
 
+    /**
+     * 图书表格的的刷新
+     */
+    private void flush(){
+        showBookData showBookData = new showBookData();
+        showBookData.flushData(bookTable);
+    }
+    /**
+     * 图书添加界面的搜索按钮事件
+     * @param e
+     */
+    private void bookAlterSearchActionPerformed(ActionEvent e) {
+        // TODO add your code here
+        Object itemAt = bookTypeCombox.getItemAt(bookTypeCombox.getSelectedIndex());
+        String s  = (String)itemAt ;
+        SearchBooks searchBooks = new SearchBooks();
+        searchBooks.searchFrom(s,bookName.getText(),bookauthor.getText(),bookTable);
+
+    }
+
+    /**
+     * 图书删除事件
+     * @param e
+     */
+    private void button5ActionPerformed(ActionEvent e) {
+        // TODO add your code here
+        if ( id.getText()== null ||"".equals(id.getText())) {
+            JOptionPane.showMessageDialog(bookAddPanel,"没有选择要删除的书籍！");
+        }else{
+            int i = JOptionPane.showConfirmDialog(bookAddPanel, "是否需要删除！");
+            if (i == 0){
+
+                    deleteBooks d = new deleteBooks();
+                    boolean b = d.deleteData(id);
+                    if (b){
+                        id.setText("");
+                        name.setText("");
+                        price.setText("");
+                        author.setText("");
+                        textArea2.setText("");
+                        woman.setSelected(false);
+                        notwoman.setSelected(false);
+                        flush();
+                        JOptionPane.showMessageDialog(bookAddPanel,"删除成功！");
+
+                }
+            }
+        }
+
+    }
+
+    /**
+     * 图书修改事件
+     * @param e
+     */
+    private void button6ActionPerformed(ActionEvent e) {
+        // TODO add your code here
+       int gender ;
+       String x ="男" ;
+       if (woman.isSelected()){
+           x = "女";
+       }
+        if (id.getText() ==null || "".equals(id.getText()) ) {
+            JOptionPane.showMessageDialog(bookAddPanel,"你还没有选中需要修改的书籍！");
+        }else{
+            if (name.getText().equals(bookTable.getValueAt(bookTable.getSelectedRow(),1))
+                    && author.getText().equals(bookTable.getValueAt(bookTable.getSelectedRow(),2))
+                    && x.equals(bookTable.getValueAt(bookTable.getSelectedRow(),3))
+                    &&  price.getText().equals(bookTable.getValueAt(bookTable.getSelectedRow(),4))
+                    && comboBox3.getSelectedItem().toString().equals(bookTable.getValueAt(bookTable.getSelectedRow(),5))
+                    && textArea2.getText().equals(bookTable.getValueAt(bookTable.getSelectedRow(),6))){
+                JOptionPane.showMessageDialog(bookAddPanel,"你还没有做任何修改！");
+            }else {
+                //做修改操作
+                boolean sw = woman.isSelected();
+                if (sw) {
+                    gender = 0;
+                } else {
+                    gender = 1;
+                }
+                alterBooks alterBooks = new alterBooks();
+                boolean b = alterBooks.alterBs(id.getText(), name.getText(), author.getText(), textArea2.getText(), price.getText(), String.valueOf(gender), comboBox3.getSelectedItem().toString());
+                if (b){
+                    flush();
+                    JOptionPane.showMessageDialog(bookAddPanel,"修改成功！");
+                }
+            }
+        }
+
+
+    }
+
+    /**
+     点击鼠标i获取数据
+     * @param e
+     */
+
+    private void bookTableMousePressed(MouseEvent e) {
+        // TODO add your code here
+        int row = bookTable.getSelectedRow();
+        String x ;
+        String t;
+        id.setText(bookTable.getValueAt(row,0).toString());
+        name.setText(bookTable.getValueAt(row,1).toString());
+        author.setText(bookTable.getValueAt(row,2).toString());
+        x = bookTable.getValueAt(row,3).toString();
+        price.setText(bookTable.getValueAt(row,4).toString());
+        t = bookTable.getValueAt(row,5).toString();
+        textArea2.setText(bookTable.getValueAt(row,6).toString());
+        if (x.equals("男")){
+            notwoman.setSelected(true);
+        }else{
+            woman.setSelected(true);
+        }
+        //一个一个的比对，直到yiyang了停止，并且设置当前的选择项是找到的那个文字
+        int itemCount = comboBox3.getItemCount();
+        for (int a = 0;a < itemCount;a++){
+            if (comboBox3.getItemAt(a).equals(t)){
+                comboBox3.setSelectedIndex(a);
+                break;
+            }
+        }
+    }
+
+    private void scrollPane6MousePressed(MouseEvent e) {
+        // TODO add your code here
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - unknown
@@ -369,6 +499,8 @@ public class mainPanel {
         menuItem6 = new JMenuItem();
         welcome = new JPanel();
         label5 = new JLabel();
+        label1 = new JLabel();
+        label19 = new JLabel();
         addPanel = new JPanel();
         label4 = new JLabel();
         label6 = new JLabel();
@@ -427,9 +559,9 @@ public class mainPanel {
         bookName = new JTextField();
         bookauthor = new JTextField();
         bookAlterSearch = new JButton();
-        comboBox2 = new JComboBox();
+        bookTypeCombox = new JComboBox();
         scrollPane6 = new JScrollPane();
-        table1 = new JTable();
+        bookTable = new JTable();
         label27 = new JLabel();
         label28 = new JLabel();
         label29 = new JLabel();
@@ -442,12 +574,12 @@ public class mainPanel {
         textArea2 = new JTextArea();
         button5 = new JButton();
         button6 = new JButton();
-        textField8 = new JTextField();
-        textField9 = new JTextField();
-        textField10 = new JTextField();
-        textField11 = new JTextField();
-        radioButton3 = new JRadioButton();
-        radioButton4 = new JRadioButton();
+        id = new JTextField();
+        price = new JTextField();
+        author = new JTextField();
+        name = new JTextField();
+        woman = new JRadioButton();
+        notwoman = new JRadioButton();
         comboBox3 = new JComboBox();
 
         //======== mianForm ========
@@ -470,9 +602,12 @@ public class mainPanel {
                     //======== menu2 ========
                     {
                         menu2.setText(bundle.getString("menu2.text"));
+                        menu2.setHorizontalAlignment(SwingConstants.LEFT);
+                        menu2.setIcon(new ImageIcon(getClass().getResource("/pic/login/jichuguanli.png")));
 
                         //---- addMenu ----
                         addMenu.setText(bundle.getString("addMenu.text"));
+                        addMenu.setIcon(new ImageIcon(getClass().getResource("/pic/login/leibie-tianjia.png")));
                         addMenu.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -483,6 +618,7 @@ public class mainPanel {
 
                         //---- alterMenu ----
                         alterMenu.setText(bundle.getString("alterMenu.text"));
+                        alterMenu.setIcon(new ImageIcon(getClass().getResource("/pic/login/xuexineirongleibieweihu.png")));
                         alterMenu.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -496,9 +632,12 @@ public class mainPanel {
                     //======== menu3 ========
                     {
                         menu3.setText(bundle.getString("menu3.text"));
+                        menu3.setHorizontalAlignment(SwingConstants.LEFT);
+                        menu3.setIcon(new ImageIcon(getClass().getResource("/pic/login/tushuleibie.png")));
 
                         //---- bookAddMenu ----
                         bookAddMenu.setText(bundle.getString("bookAddMenu.text"));
+                        bookAddMenu.setIcon(new ImageIcon(getClass().getResource("/pic/login/leibie-tianjia.png")));
                         bookAddMenu.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -509,6 +648,7 @@ public class mainPanel {
 
                         //---- bookAlterMenu ----
                         bookAlterMenu.setText(bundle.getString("bookAlterMenu.text"));
+                        bookAlterMenu.setIcon(new ImageIcon(getClass().getResource("/pic/login/weihu-01.png")));
                         bookAlterMenu.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -521,6 +661,8 @@ public class mainPanel {
 
                     //---- exit ----
                     exit.setText(bundle.getString("exit.text"));
+                    exit.setHorizontalAlignment(SwingConstants.LEFT);
+                    exit.setIcon(new ImageIcon(getClass().getResource("/pic/login/tuichu2.png")));
                     exit.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -539,6 +681,7 @@ public class mainPanel {
 
                     //---- menuItem6 ----
                     menuItem6.setText(bundle.getString("menuItem6.text"));
+                    menuItem6.setIcon(new ImageIcon(getClass().getResource("/pic/login/yanhua.png")));
                     menuItem6.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -553,32 +696,56 @@ public class mainPanel {
 
             //======== welcome ========
             {
-                welcome.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-                0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-                . BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
-                red) ,welcome. getBorder( )) ); welcome. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-                beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+                welcome.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
+                swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border
+                . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog"
+                ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,welcome. getBorder
+                ( )) ); welcome. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
+                .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException
+                ( ); }} );
 
                 //---- label5 ----
                 label5.setText(bundle.getString("label5.text"));
                 label5.setHorizontalAlignment(SwingConstants.CENTER);
                 label5.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 48));
 
+                //---- label1 ----
+                label1.setText(bundle.getString("label1.text"));
+                label1.setHorizontalAlignment(SwingConstants.CENTER);
+                label1.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 16));
+
+                //---- label19 ----
+                label19.setText(bundle.getString("label19.text"));
+                label19.setHorizontalAlignment(SwingConstants.CENTER);
+                label19.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 16));
+
                 GroupLayout welcomeLayout = new GroupLayout(welcome);
                 welcome.setLayout(welcomeLayout);
                 welcomeLayout.setHorizontalGroup(
                     welcomeLayout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, welcomeLayout.createSequentialGroup()
-                            .addContainerGap(217, Short.MAX_VALUE)
-                            .addComponent(label5, GroupLayout.PREFERRED_SIZE, 607, GroupLayout.PREFERRED_SIZE)
-                            .addGap(194, 194, 194))
+                        .addGroup(welcomeLayout.createSequentialGroup()
+                            .addContainerGap(209, Short.MAX_VALUE)
+                            .addGroup(welcomeLayout.createParallelGroup()
+                                .addGroup(GroupLayout.Alignment.TRAILING, welcomeLayout.createSequentialGroup()
+                                    .addComponent(label5, GroupLayout.PREFERRED_SIZE, 607, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(202, 202, 202))
+                                .addGroup(GroupLayout.Alignment.TRAILING, welcomeLayout.createSequentialGroup()
+                                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(392, 392, 392))
+                                .addGroup(GroupLayout.Alignment.TRAILING, welcomeLayout.createSequentialGroup()
+                                    .addComponent(label19, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(353, 353, 353))))
                 );
                 welcomeLayout.setVerticalGroup(
                     welcomeLayout.createParallelGroup()
                         .addGroup(welcomeLayout.createSequentialGroup()
-                            .addGap(224, 224, 224)
+                            .addGap(83, 83, 83)
                             .addComponent(label5, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(350, Short.MAX_VALUE))
+                            .addGap(18, 18, 18)
+                            .addComponent(label1, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(label19, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(361, Short.MAX_VALUE))
                 );
             }
             mianFormContentPane.add(welcome, "card1");
@@ -988,18 +1155,18 @@ public class mainPanel {
                                             .addComponent(addSex)
                                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(addMan)
-                                            .addContainerGap(636, Short.MAX_VALUE))
+                                            .addContainerGap(626, Short.MAX_VALUE))
                                         .addGroup(bookAddPanelLayout.createSequentialGroup()
                                             .addGap(15, 15, 15)
                                             .addGroup(bookAddPanelLayout.createParallelGroup()
                                                 .addGroup(bookAddPanelLayout.createSequentialGroup()
                                                     .addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 423, GroupLayout.PREFERRED_SIZE)
-                                                    .addContainerGap(292, Short.MAX_VALUE))
+                                                    .addContainerGap(282, Short.MAX_VALUE))
                                                 .addGroup(bookAddPanelLayout.createSequentialGroup()
                                                     .addGroup(bookAddPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                                         .addComponent(addBookType, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(addBookName, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                                                     .addGroup(bookAddPanelLayout.createParallelGroup()
                                                         .addGroup(bookAddPanelLayout.createSequentialGroup()
                                                             .addComponent(label11)
@@ -1012,7 +1179,7 @@ public class mainPanel {
                                                     .addGap(199, 199, 199))))))
                                 .addGroup(bookAddPanelLayout.createSequentialGroup()
                                     .addComponent(addBookResert)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 369, Short.MAX_VALUE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 361, Short.MAX_VALUE)
                                     .addComponent(addBookAdd)
                                     .addGap(219, 219, 219))))
                 );
@@ -1069,10 +1236,48 @@ public class mainPanel {
                 //---- bookAlterSearch ----
                 bookAlterSearch.setText(bundle.getString("bookAlterSearch.text"));
                 bookAlterSearch.setIcon(new ImageIcon(getClass().getResource("/pic/login/sousuo.png")));
+                bookAlterSearch.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        bookAlterSearchActionPerformed(e);
+                    }
+                });
 
                 //======== scrollPane6 ========
                 {
-                    scrollPane6.setViewportView(table1);
+                    scrollPane6.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mousePressed(MouseEvent e) {
+                            scrollPane6MousePressed(e);
+                        }
+                    });
+
+                    //---- bookTable ----
+                    bookTable.setModel(new DefaultTableModel(
+                        new Object[][] {
+                            {null, null, null, null, null, null, null},
+                            {null, null, null, null, null, null, null},
+                        },
+                        new String[] {
+                            "\u7f16\u53f7", "\u540d\u79f0", "\u4f5c\u8005", "\u6027\u522b", "\u4ef7\u683c", "\u7c7b\u522b", "\u63cf\u8ff0"
+                        }
+                    ) {
+                        boolean[] columnEditable = new boolean[] {
+                            false, false, false, false, false, false, false
+                        };
+                        @Override
+                        public boolean isCellEditable(int rowIndex, int columnIndex) {
+                            return columnEditable[columnIndex];
+                        }
+                    });
+                    bookTable.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
+                    bookTable.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mousePressed(MouseEvent e) {
+                            bookTableMousePressed(e);
+                        }
+                    });
+                    scrollPane6.setViewportView(bookTable);
                 }
 
                 //---- label27 ----
@@ -1108,90 +1313,109 @@ public class mainPanel {
                 //---- button5 ----
                 button5.setText(bundle.getString("button5.text"));
                 button5.setIcon(new ImageIcon(getClass().getResource("/pic/login/chushaixuanxiang.png")));
+                button5.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        button5ActionPerformed(e);
+                    }
+                });
 
                 //---- button6 ----
                 button6.setText(bundle.getString("button6.text"));
                 button6.setIcon(new ImageIcon(getClass().getResource("/pic/login/xiugai.png")));
+                button6.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        button6ActionPerformed(e);
+                    }
+                });
 
-                //---- radioButton3 ----
-                radioButton3.setText(bundle.getString("radioButton3.text"));
+                //---- id ----
+                id.setHorizontalAlignment(SwingConstants.CENTER);
+                id.setEditable(false);
 
-                //---- radioButton4 ----
-                radioButton4.setText(bundle.getString("radioButton4.text"));
+                //---- woman ----
+                woman.setText(bundle.getString("woman.text"));
+
+                //---- notwoman ----
+                notwoman.setText(bundle.getString("notwoman.text"));
 
                 GroupLayout bookAlterPanelLayout = new GroupLayout(bookAlterPanel);
                 bookAlterPanel.setLayout(bookAlterPanelLayout);
                 bookAlterPanelLayout.setHorizontalGroup(
                     bookAlterPanelLayout.createParallelGroup()
-                        .addGroup(bookAlterPanelLayout.createSequentialGroup()
-                            .addGroup(bookAlterPanelLayout.createParallelGroup()
-                                .addGroup(bookAlterPanelLayout.createSequentialGroup()
-                                    .addGap(49, 49, 49)
+                        .addGroup(GroupLayout.Alignment.TRAILING, bookAlterPanelLayout.createSequentialGroup()
+                            .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addGroup(GroupLayout.Alignment.LEADING, bookAlterPanelLayout.createSequentialGroup()
+                                    .addGap(106, 106, 106)
                                     .addGroup(bookAlterPanelLayout.createParallelGroup()
-                                        .addComponent(label15)
-                                        .addComponent(label27)))
-                                .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addGroup(GroupLayout.Alignment.LEADING, bookAlterPanelLayout.createSequentialGroup()
-                                        .addGap(106, 106, 106)
-                                        .addGroup(bookAlterPanelLayout.createParallelGroup()
-                                            .addGroup(bookAlterPanelLayout.createSequentialGroup()
-                                                .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addGroup(bookAlterPanelLayout.createSequentialGroup()
+                                            .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                                .addGroup(bookAlterPanelLayout.createParallelGroup()
+                                                    .addComponent(label28)
+                                                    .addComponent(label29))
+                                                .addComponent(label34))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(bookAlterPanelLayout.createSequentialGroup()
                                                     .addGroup(bookAlterPanelLayout.createParallelGroup()
-                                                        .addComponent(label28)
-                                                        .addComponent(label29))
-                                                    .addComponent(label34))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                    .addGroup(bookAlterPanelLayout.createSequentialGroup()
-                                                        .addGroup(bookAlterPanelLayout.createParallelGroup()
-                                                            .addComponent(textField8, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(textField9, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))
-                                                        .addGap(37, 37, 37)
-                                                        .addGroup(bookAlterPanelLayout.createParallelGroup()
-                                                            .addGroup(bookAlterPanelLayout.createSequentialGroup()
-                                                                .addComponent(label31)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(textField10, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
-                                                            .addGroup(bookAlterPanelLayout.createSequentialGroup()
-                                                                .addComponent(label30)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(textField11, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)))
-                                                        .addGap(29, 29, 29)
-                                                        .addGroup(bookAlterPanelLayout.createParallelGroup()
-                                                            .addGroup(bookAlterPanelLayout.createSequentialGroup()
-                                                                .addComponent(label32)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(radioButton3)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(radioButton4))
-                                                            .addGroup(bookAlterPanelLayout.createSequentialGroup()
-                                                                .addComponent(label33)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(comboBox3, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))))
-                                                    .addComponent(scrollPane7)))
-                                            .addGroup(bookAlterPanelLayout.createSequentialGroup()
-                                                .addComponent(button5)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 626, Short.MAX_VALUE)
-                                                .addComponent(button6))))
-                                    .addGroup(GroupLayout.Alignment.LEADING, bookAlterPanelLayout.createSequentialGroup()
-                                        .addGap(117, 117, 117)
-                                        .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(scrollPane6)
-                                            .addGroup(bookAlterPanelLayout.createSequentialGroup()
-                                                .addComponent(label16)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(bookName, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(label17)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(bookauthor, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(24, 24, 24)
-                                                .addComponent(label18)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(bookAlterSearch))))))
+                                                        .addComponent(price, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(id, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE))
+                                                    .addGap(74, 74, 74)
+                                                    .addGroup(bookAlterPanelLayout.createParallelGroup()
+                                                        .addGroup(bookAlterPanelLayout.createSequentialGroup()
+                                                            .addComponent(label31)
+                                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                            .addComponent(author, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(bookAlterPanelLayout.createSequentialGroup()
+                                                            .addComponent(label30)
+                                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                            .addComponent(name, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)))
+                                                    .addGap(29, 29, 29)
+                                                    .addGroup(bookAlterPanelLayout.createParallelGroup()
+                                                        .addGroup(bookAlterPanelLayout.createSequentialGroup()
+                                                            .addComponent(label32)
+                                                            .addGap(18, 18, 18)
+                                                            .addComponent(woman)
+                                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(notwoman))
+                                                        .addGroup(bookAlterPanelLayout.createSequentialGroup()
+                                                            .addComponent(label33)
+                                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(comboBox3, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(scrollPane7)))
+                                        .addGroup(bookAlterPanelLayout.createSequentialGroup()
+                                            .addComponent(button5)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 626, Short.MAX_VALUE)
+                                            .addComponent(button6))))
+                                .addGroup(GroupLayout.Alignment.LEADING, bookAlterPanelLayout.createSequentialGroup()
+                                    .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addGroup(GroupLayout.Alignment.LEADING, bookAlterPanelLayout.createSequentialGroup()
+                                            .addGap(49, 49, 49)
+                                            .addGroup(bookAlterPanelLayout.createParallelGroup()
+                                                .addComponent(label15)
+                                                .addComponent(label27)))
+                                        .addGroup(GroupLayout.Alignment.LEADING, bookAlterPanelLayout.createSequentialGroup()
+                                            .addGap(117, 117, 117)
+                                            .addComponent(label16)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(bookName, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(label17)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(bookauthor, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(24, 24, 24)
+                                            .addComponent(label18)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(bookTypeCombox, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(bookAlterSearch)))
+                                    .addGap(0, 19, Short.MAX_VALUE)))
                             .addGap(66, 66, 66))
+                        .addGroup(GroupLayout.Alignment.TRAILING, bookAlterPanelLayout.createSequentialGroup()
+                            .addGap(0, 82, Short.MAX_VALUE)
+                            .addComponent(scrollPane6, GroupLayout.PREFERRED_SIZE, 885, GroupLayout.PREFERRED_SIZE)
+                            .addGap(51, 51, 51))
                 );
                 bookAlterPanelLayout.setVerticalGroup(
                     bookAlterPanelLayout.createParallelGroup()
@@ -1204,7 +1428,7 @@ public class mainPanel {
                                 .addComponent(bookauthor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(bookAlterSearch)
                                 .addComponent(label16)
-                                .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bookTypeCombox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(label18)
                                 .addComponent(bookName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
@@ -1216,17 +1440,17 @@ public class mainPanel {
                                 .addComponent(label28)
                                 .addComponent(label30)
                                 .addComponent(label32)
-                                .addComponent(textField8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textField11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(radioButton3)
-                                .addComponent(radioButton4))
+                                .addComponent(name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(woman)
+                                .addComponent(notwoman)
+                                .addComponent(id, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                             .addGap(31, 31, 31)
                             .addGroup(bookAlterPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(label29)
                                 .addComponent(label31)
                                 .addComponent(label33)
-                                .addComponent(textField9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textField10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(price, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(comboBox3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                             .addGroup(bookAlterPanelLayout.createParallelGroup()
@@ -1248,6 +1472,8 @@ public class mainPanel {
         ButtonGroup buttonGroup1 = new ButtonGroup();
         buttonGroup1.add(addSex);
         buttonGroup1.add(addMan);
+        buttonGroup1.add(woman);
+        buttonGroup1.add(notwoman);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
@@ -1267,6 +1493,8 @@ public class mainPanel {
     private JMenuItem menuItem6;
     private JPanel welcome;
     private JLabel label5;
+    private JLabel label1;
+    private JLabel label19;
     private JPanel addPanel;
     private JLabel label4;
     private JLabel label6;
@@ -1325,9 +1553,9 @@ public class mainPanel {
     private JTextField bookName;
     private JTextField bookauthor;
     private JButton bookAlterSearch;
-    private JComboBox comboBox2;
+    private JComboBox bookTypeCombox;
     private JScrollPane scrollPane6;
-    private JTable table1;
+    private JTable bookTable;
     private JLabel label27;
     private JLabel label28;
     private JLabel label29;
@@ -1340,12 +1568,12 @@ public class mainPanel {
     private JTextArea textArea2;
     private JButton button5;
     private JButton button6;
-    private JTextField textField8;
-    private JTextField textField9;
-    private JTextField textField10;
-    private JTextField textField11;
-    private JRadioButton radioButton3;
-    private JRadioButton radioButton4;
+    private JTextField id;
+    private JTextField price;
+    private JTextField author;
+    private JTextField name;
+    private JRadioButton woman;
+    private JRadioButton notwoman;
     private JComboBox comboBox3;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     public static void main(String[] args) {

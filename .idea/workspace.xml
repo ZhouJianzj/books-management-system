@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb73e236-64e8-4865-b0c1-438729f824de" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/alterBookTypeManager/CheckExist.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/booAddPanel/addBookDoAdd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/booAddPanel/getJComboxData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/bookAlterPanel/SearchBooks.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/bookAlterPanel/alterBooks.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/bookAlterPanel/deleteBooks.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/bookAlterPanel/showBookData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/FFFF.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/booAddPanel/addBookDoAdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/booAddPanel/addBookDoAdd.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/mainPanel/mainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/mainPanel/mainPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/mainPanel/mainPanel.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/mainPanel/mainPanel.jfd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TT.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +53,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -66,13 +69,27 @@
       <recent name="C:\Users\Administrator\Desktop\student-manager\com\books-management\src\main\java\view" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.login">
-    <configuration name="addBookDoAdd" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.booAddPanel.addBookDoAdd" />
+  <component name="RunManager" selected="Application.mainPanel">
+    <configuration name="FFFF" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="FFFF" />
+      <module name="books-management" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TT" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TT" />
+      <module name="books-management" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="alterBooks" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.bookAlterPanel.alterBooks" />
       <module name="books-management" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dao.booAddPanel.*" />
+          <option name="PATTERN" value="dao.bookAlterPanel.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -80,38 +97,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="alterType" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.alterBookTypeManager.alterType" />
+    <configuration name="deleteBooks" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.bookAlterPanel.deleteBooks" />
       <module name="books-management" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dao.alterBookTypeManager.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="getJComboxData" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.booAddPanel.getJComboxData" />
-      <module name="books-management" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dao.booAddPanel.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="login" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="view.login.login" />
-      <module name="books-management" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="view.login.*" />
+          <option name="PATTERN" value="dao.bookAlterPanel.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -134,11 +125,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.login" />
         <item itemvalue="Application.mainPanel" />
-        <item itemvalue="Application.getJComboxData" />
-        <item itemvalue="Application.addBookDoAdd" />
-        <item itemvalue="Application.alterType" />
+        <item itemvalue="Application.FFFF" />
+        <item itemvalue="Application.alterBooks" />
+        <item itemvalue="Application.TT" />
+        <item itemvalue="Application.deleteBooks" />
       </list>
     </recent_temporary>
   </component>
@@ -164,7 +155,12 @@
       <workItem from="1612420374656" duration="20318000" />
       <workItem from="1612451724497" duration="224000" />
       <workItem from="1612491889735" duration="4149000" />
-      <workItem from="1612503146649" duration="13847000" />
+      <workItem from="1612503146649" duration="21701000" />
+      <workItem from="1612535756960" duration="1050000" />
+      <workItem from="1612537161575" duration="1126000" />
+      <workItem from="1612586106023" duration="1117000" />
+      <workItem from="1612587571650" duration="1840000" />
+      <workItem from="1612589472574" duration="31603000" />
     </task>
     <servers />
   </component>
@@ -176,45 +172,50 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="700" y="357" key="#Project_Structure/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612273390052" />
-    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1612340511077">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="501" y="198" key="#SQL_Dialects" timestamp="1612591292263">
+      <screen x="0" y="0" width="1819" height="1080" />
     </state>
+    <state x="501" y="198" key="#SQL_Dialects/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612591292263" />
+    <state x="725" y="232" key="#com.intellij.ide.util.MemberChooser" timestamp="1612520571601">
+      <screen x="0" y="0" width="1819" height="1080" />
+    </state>
+    <state x="725" y="232" key="#com.intellij.ide.util.MemberChooser/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612520571601" />
     <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612340511077" />
-    <state width="1776" height="269" key="GridCell.Tab.0.bottom" timestamp="1612515275007">
+    <state width="1776" height="176" key="GridCell.Tab.0.bottom" timestamp="1612624677874">
       <screen x="0" y="0" width="1819" height="1080" />
     </state>
     <state width="1323" height="105" key="GridCell.Tab.0.bottom/-1366.243.1265.768/0.0.1819.1080@-1366.243.1265.768" timestamp="1612436244359" />
-    <state width="1776" height="269" key="GridCell.Tab.0.bottom/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612513326893" />
+    <state width="1776" height="176" key="GridCell.Tab.0.bottom/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612624677874" />
     <state width="1323" height="159" key="GridCell.Tab.0.bottom/-1366.243.1366.728/0.0.1920.1040@-1366.243.1366.728" timestamp="1612353233704" />
     <state width="1877" height="159" key="GridCell.Tab.0.bottom/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612352818967" />
     <state width="1222" height="114" key="GridCell.Tab.0.bottom/0.0.1265.768@0.0.1265.768" timestamp="1612492809756" />
     <state width="1323" height="85" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1612496247187" />
     <state width="1776" height="269" key="GridCell.Tab.0.bottom/0.0.1819.1080@0.0.1819.1080" timestamp="1612515275007" />
-    <state width="1776" height="269" key="GridCell.Tab.0.center" timestamp="1612515275007">
+    <state width="1776" height="176" key="GridCell.Tab.0.center" timestamp="1612624677874">
       <screen x="0" y="0" width="1819" height="1080" />
     </state>
     <state width="1323" height="105" key="GridCell.Tab.0.center/-1366.243.1265.768/0.0.1819.1080@-1366.243.1265.768" timestamp="1612436244358" />
-    <state width="1776" height="269" key="GridCell.Tab.0.center/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612513326893" />
+    <state width="1776" height="176" key="GridCell.Tab.0.center/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612624677874" />
     <state width="1323" height="159" key="GridCell.Tab.0.center/-1366.243.1366.728/0.0.1920.1040@-1366.243.1366.728" timestamp="1612353233703" />
     <state width="1877" height="159" key="GridCell.Tab.0.center/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612352818967" />
     <state width="1222" height="114" key="GridCell.Tab.0.center/0.0.1265.768@0.0.1265.768" timestamp="1612492809756" />
     <state width="1323" height="85" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1612496247187" />
     <state width="1776" height="269" key="GridCell.Tab.0.center/0.0.1819.1080@0.0.1819.1080" timestamp="1612515275007" />
-    <state width="1776" height="269" key="GridCell.Tab.0.left" timestamp="1612515275007">
+    <state width="1776" height="176" key="GridCell.Tab.0.left" timestamp="1612624677873">
       <screen x="0" y="0" width="1819" height="1080" />
     </state>
     <state width="1323" height="105" key="GridCell.Tab.0.left/-1366.243.1265.768/0.0.1819.1080@-1366.243.1265.768" timestamp="1612436244358" />
-    <state width="1776" height="269" key="GridCell.Tab.0.left/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612513326893" />
+    <state width="1776" height="176" key="GridCell.Tab.0.left/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612624677873" />
     <state width="1323" height="159" key="GridCell.Tab.0.left/-1366.243.1366.728/0.0.1920.1040@-1366.243.1366.728" timestamp="1612353233703" />
     <state width="1877" height="159" key="GridCell.Tab.0.left/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612352818967" />
     <state width="1222" height="114" key="GridCell.Tab.0.left/0.0.1265.768@0.0.1265.768" timestamp="1612492809754" />
     <state width="1323" height="85" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1612496247187" />
     <state width="1776" height="269" key="GridCell.Tab.0.left/0.0.1819.1080@0.0.1819.1080" timestamp="1612515275007" />
-    <state width="1776" height="269" key="GridCell.Tab.0.right" timestamp="1612515275007">
+    <state width="1776" height="176" key="GridCell.Tab.0.right" timestamp="1612624677874">
       <screen x="0" y="0" width="1819" height="1080" />
     </state>
     <state width="1323" height="105" key="GridCell.Tab.0.right/-1366.243.1265.768/0.0.1819.1080@-1366.243.1265.768" timestamp="1612436244358" />
-    <state width="1776" height="269" key="GridCell.Tab.0.right/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612513326893" />
+    <state width="1776" height="176" key="GridCell.Tab.0.right/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612624677874" />
     <state width="1323" height="159" key="GridCell.Tab.0.right/-1366.243.1366.728/0.0.1920.1040@-1366.243.1366.728" timestamp="1612353233703" />
     <state width="1877" height="159" key="GridCell.Tab.0.right/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612352818967" />
     <state width="1222" height="114" key="GridCell.Tab.0.right/0.0.1265.768@0.0.1265.768" timestamp="1612492809756" />
@@ -224,10 +225,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="540" y="255" width="840" height="530" key="IDE.errors.dialog/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612334235969" />
-    <state x="590" y="234" width="672" height="705" key="search.everywhere.popup" timestamp="1612427809593">
+    <state x="410" y="182" key="SettingsEditor" timestamp="1612608928470">
       <screen x="0" y="0" width="1819" height="1080" />
     </state>
-    <state x="590" y="234" width="672" height="705" key="search.everywhere.popup/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612427809593" />
+    <state x="410" y="182" key="SettingsEditor/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612608928470" />
+    <state x="566" y="250" key="run.anything.popup" timestamp="1612613485866">
+      <screen x="0" y="0" width="1819" height="1080" />
+    </state>
+    <state x="566" y="250" key="run.anything.popup/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612613485866" />
+    <state x="590" y="234" width="672" height="705" key="search.everywhere.popup" timestamp="1612609938603">
+      <screen x="0" y="0" width="1819" height="1080" />
+    </state>
+    <state x="590" y="234" width="672" height="705" key="search.everywhere.popup/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612609938603" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612337364531" />
   </component>
 </project>

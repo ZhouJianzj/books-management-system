@@ -13,8 +13,8 @@ new FormModel {
 			"$sizePolicy": 1
 			"resizable": false
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space ::217:x, comp label5:::p:607:p, space :p:194:p}}"
-				"$verticalGroup": "par l {seq l {space :p:224:p, comp label5:::p:156:p, space ::350:x}}"
+				"$horizontalGroup": "par l {seq {space ::209:x, par l {seq t {comp label5:::p:607:p, space :p:202:p}, seq t {comp label1:::p:217:p, space :p:392:p}, seq t {comp label19:::p:301:p, space :p:353:p}}}}"
+				"$verticalGroup": "par l {seq {space :p:83:p, comp label5:::p:156:p, space s:::p, comp label1:::p:61:p, space :::p, comp label19:::p:45:p, space ::361:x}}"
 			} ) {
 				name: "welcome"
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -22,6 +22,18 @@ new FormModel {
 					"text": new FormMessage( null, "label5.text" )
 					"horizontalAlignment": 0
 					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 48 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": new FormMessage( null, "label1.text" )
+					"horizontalAlignment": 0
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 16 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label19"
+					"text": new FormMessage( null, "label19.text" )
+					"horizontalAlignment": 0
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 16 )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "card1"
@@ -219,7 +231,7 @@ new FormModel {
 				"value": "card3"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:210:p, par l {seq {par t {comp label2:::p::p, comp label10::t:p::p, comp label13::t:p::p, comp label14::t:p::p}, space s:::p, par l {seq {comp addSex:::p::p, space :::p, comp addMan:::p::p, space ::636:x}, seq l {space :p:15:p, par l {seq {comp scrollPane4:::p:423:p, space ::292:x}, seq {par t {comp addBookType:::p:181:p, comp addBookName:::p:178:p}, space ::65:x, par l {seq {comp label11:::p::p, space s:::p, comp addBookAuthor:::p:192:p}, seq l {comp label12:::p::p, space s:::p, comp addBookPrice:::p:138:p}}, space :p:199:p}}}}}, seq l {comp addBookResert:::p::p, space ::369:x, comp addBookAdd:::p::p, space :p:219:p}}}}"
+				"$horizontalGroup": "par l {seq l {space :p:210:p, par l {seq {par t {comp label2:::p::p, comp label10::t:p::p, comp label13::t:p::p, comp label14::t:p::p}, space s:::p, par l {seq {comp addSex:::p::p, space :::p, comp addMan:::p::p, space ::626:x}, seq l {space :p:15:p, par l {seq {comp scrollPane4:::p:423:p, space ::282:x}, seq {par t {comp addBookType:::p:181:p, comp addBookName:::p:178:p}, space ::45:x, par l {seq {comp label11:::p::p, space s:::p, comp addBookAuthor:::p:192:p}, seq l {comp label12:::p::p, space s:::p, comp addBookPrice:::p:138:p}}, space :p:199:p}}}}}, seq l {comp addBookResert:::p::p, space ::361:x, comp addBookAdd:::p::p, space :p:219:p}}}}"
 				"$verticalGroup": "par l {seq l {space :p:82:p, par b {comp label2::b:p::p, comp label11::b:p::p, comp addBookName::b:p::p, comp addBookAuthor::b:p::p}, space :p:55:p, par b {comp label10::b:p::p, comp addSex::b:p::p, comp label12::b:p::p, comp addMan::b:p::p, comp addBookPrice::b:p::p}, space :p:46:p, par b {comp label13::b:p::p, comp addBookType::b:p::p}, space :p:75:p, par l {comp label14:::p::p, comp scrollPane4:::p:153:p}, space ::108:x, par b {comp addBookResert::b:p::p, comp addBookAdd::b:p::p}, space :p:98:p}}"
 			} ) {
 				name: "bookAddPanel"
@@ -300,8 +312,8 @@ new FormModel {
 				"value": "card4"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq {space :p:49:p, par l {comp label15:::p::p, comp label27:::p::p}}, par t:l {seq l {space :p:106:p, par l {seq l {par t {par l {comp label28:::p::p, comp label29:::p::p}, comp label34:::p::p}, space s:::p, par l:::p {seq {par l {comp textField8:::p:184:p, comp textField9:::p:99:p}, space :p:37:p, par l {seq l {comp label31:::p::p, space u:::p, comp textField10:::p:118:p}, seq l {comp label30:::p::p, space u:::p, comp textField11:::p:198:p}}, space :p:29:p, par l {seq l {comp label32:::p::p, space s:::p, comp radioButton3:::p::p, space :::p, comp radioButton4:::p::p}, seq l {comp label33:::p::p, space :::p, comp comboBox3:::p:141:p}}}, comp scrollPane7:::::x}}, seq l {comp button5:::p::p, space ::626:x, comp button6:::p::p}}}, seq l {space :p:117:p, par l:::p {comp scrollPane6:::::x, seq {comp label16:::p::p, space :::p, comp bookName:::p:171:p, space u:::p, comp label17:::p::p, space :::p, comp bookauthor:::p:150:p, space :p:24:p, comp label18:::p::p, space :::p, comp comboBox2:::p:133:p, space s:::p, comp bookAlterSearch:::p::p}}}}}, space :p:66:p}}"
-				"$verticalGroup": "par l {seq l {space :p:43:p, comp label15:::p::p, space :p:35:p, par b {comp label17::b:p::p, comp bookauthor::b:p::p, comp bookAlterSearch::b:p::p, comp label16::b:p::p, comp comboBox2::b:p::p, comp label18::b:p::p, comp bookName::b:p::p}, space s:::p, comp scrollPane6:::p:177:p, space :p:61:p, comp label27:::p::p, space :p:28:p, par b {comp label28::b:p::p, comp label30::b:p::p, comp label32::b:p::p, comp textField8::b:p::p, comp textField11::b:p::p, comp radioButton3::b:p::p, comp radioButton4::b:p::p}, space :p:31:p, par b {comp label29::b:p::p, comp label31::b:p::p, comp label33::b:p::p, comp textField9::b:p::p, comp textField10::b:p::p, comp comboBox3::b:p::p}, space ::17:x, par l {comp label34:::p::p, comp scrollPane7:::p:89:p}, space :p:49:p, par b {comp button5::b:p::p, comp button6::b:p::p}, space :p:28:p}}"
+				"$horizontalGroup": "par l {seq t {par t {seq l {space :p:106:p, par l {seq l {par t {par l {comp label28:::p::p, comp label29:::p::p}, comp label34:::p::p}, space s:::p, par l:::p {seq {par l {comp price:::p:99:p, comp id:::p:147:p}, space :p:74:p, par l {seq l {comp label31:::p::p, space u:::p, comp author:::p:118:p}, seq l {comp label30:::p::p, space u:::p, comp name:::p:198:p}}, space :p:29:p, par l {seq l {comp label32:::p::p, space s:::p, comp woman:::p::p, space :::p, comp notwoman:::p::p}, seq l {comp label33:::p::p, space :::p, comp comboBox3:::p:141:p}}}, comp scrollPane7:::::x}}, seq l {comp button5:::p::p, space ::626:x, comp button6:::p::p}}}, seq l {par t {seq l {space :p:49:p, par l {comp label15:::p::p, comp label27:::p::p}}, seq l {space :p:117:p, comp label16:::p::p, space :::p, comp bookName:::p:171:p, space u:::p, comp label17:::p::p, space :::p, comp bookauthor:::p:150:p, space :p:24:p, comp label18:::p::p, space :::p, comp bookTypeCombox:::p:133:p, space s:::p, comp bookAlterSearch:::p::p}}, space :0:19:x}}, space :p:66:p}, seq t {space :0:82:x, comp scrollPane6:::p:885:p, space :p:51:p}}"
+				"$verticalGroup": "par l {seq l {space :p:43:p, comp label15:::p::p, space :p:35:p, par b {comp label17::b:p::p, comp bookauthor::b:p::p, comp bookAlterSearch::b:p::p, comp label16::b:p::p, comp bookTypeCombox::b:p::p, comp label18::b:p::p, comp bookName::b:p::p}, space s:::p, comp scrollPane6:::p:177:p, space :p:61:p, comp label27:::p::p, space :p:28:p, par b {comp label28::b:p::p, comp label30::b:p::p, comp label32::b:p::p, comp name::b:p::p, comp woman::b:p::p, comp notwoman::b:p::p, comp id::b:p::p}, space :p:31:p, par b {comp label29::b:p::p, comp label31::b:p::p, comp label33::b:p::p, comp price::b:p::p, comp author::b:p::p, comp comboBox3::b:p::p}, space ::17:x, par l {comp label34:::p::p, comp scrollPane7:::p:89:p}, space :p:49:p, par b {comp button5::b:p::p, comp button6::b:p::p}, space :p:28:p}}"
 			} ) {
 				name: "bookAlterPanel"
 				"font": new java.awt.Font( "Microsoft YaHei UI", 1, 14 )
@@ -332,14 +344,70 @@ new FormModel {
 					name: "bookAlterSearch"
 					"text": new FormMessage( null, "bookAlterSearch.text" )
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/sousuo.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bookAlterSearchActionPerformed", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
-					name: "comboBox2"
+					name: "bookTypeCombox"
 				} )
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane6"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "scrollPane6MousePressed", true ) )
 					add( new FormComponent( "javax.swing.JTable" ) {
-						name: "table1"
+						name: "bookTable"
+						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+							add( new java.util.Vector {
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+							} )
+							add( new java.util.Vector {
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+							} )
+						}, new java.util.Vector {
+							add( "编号" )
+							add( "名称" )
+							add( "作者" )
+							add( "性别" )
+							add( "价格" )
+							add( "类别" )
+							add( "描述" )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						}, new java.util.Vector {
+							add( false )
+							add( false )
+							add( false )
+							add( false )
+							add( false )
+							add( false )
+							add( false )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "bookTableMousePressed", true ) )
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -385,31 +453,37 @@ new FormModel {
 					name: "button5"
 					"text": new FormMessage( null, "button5.text" )
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/chushaixuanxiang.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button5ActionPerformed", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "button6"
 					"text": new FormMessage( null, "button6.text" )
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/xiugai.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button6ActionPerformed", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField8"
+					name: "id"
+					"horizontalAlignment": 0
+					"editable": false
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField9"
+					name: "price"
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField10"
+					name: "author"
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField11"
+					name: "name"
 				} )
 				add( new FormComponent( "javax.swing.JRadioButton" ) {
-					name: "radioButton3"
-					"text": new FormMessage( null, "radioButton3.text" )
+					name: "woman"
+					"text": new FormMessage( null, "woman.text" )
+					"$buttonGroup": &FormReference0 new FormReference( "buttonGroup1" )
 				} )
 				add( new FormComponent( "javax.swing.JRadioButton" ) {
-					name: "radioButton4"
-					"text": new FormMessage( null, "radioButton4.text" )
+					name: "notwoman"
+					"text": new FormMessage( null, "notwoman.text" )
+					"$buttonGroup": #FormReference0
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "comboBox3"
@@ -426,34 +500,44 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "menu2"
 						"text": new FormMessage( null, "menu2.text" )
+						"horizontalAlignment": 2
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/jichuguanli.png" )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "addMenu"
 							"text": new FormMessage( null, "addMenu.text" )
+							"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/leibie-tianjia.png" )
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addMenuActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "alterMenu"
 							"text": new FormMessage( null, "alterMenu.text" )
+							"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/xuexineirongleibieweihu.png" )
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "alterMenuActionPerformed", true ) )
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "menu3"
 						"text": new FormMessage( null, "menu3.text" )
+						"horizontalAlignment": 2
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/tushuleibie.png" )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "bookAddMenu"
 							"text": new FormMessage( null, "bookAddMenu.text" )
+							"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/leibie-tianjia.png" )
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bookAddMenuActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "bookAlterMenu"
 							"text": new FormMessage( null, "bookAlterMenu.text" )
+							"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/weihu-01.png" )
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bookAlterMenuActionPerformed", true ) )
 						} )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "exit"
 						"text": new FormMessage( null, "exit.text" )
+						"horizontalAlignment": 2
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/tuichu2.png" )
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem3ActionPerformed", true ) )
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "exitActionPerformed", true ) )
 					} )
@@ -465,12 +549,13 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem6"
 						"text": new FormMessage( null, "menuItem6.text" )
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/yanhua.png" )
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem6ActionPerformed", true ) )
 					} )
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 315 )
+			"location": new java.awt.Point( 0, 0 )
 			"size": new java.awt.Dimension( 1020, 800 )
 		} )
 		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {

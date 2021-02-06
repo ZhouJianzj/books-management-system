@@ -27,8 +27,9 @@ public class addBookDoAdd {
     public boolean doAddCheck(Book book){
         JdbcUtil initJdbcUtil = JdbcUtil.getInitJdbcUtil();
         Connection connection = initJdbcUtil.getConnection();
-        String sql = "select * from book where bookName = ? and bookauthor = ? and gender = ? and bookType = ? and bookDesc = ? and bookPrice = ?";
+        String sql = "select * from book where bookName = ? and bookauth = ? and gender = ? and bookType = ? and bookDesc = ? and bookPrice = ?";
         PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
           preparedStatement = connection.prepareStatement(sql);
           preparedStatement.setString(1,book.getBookName());
@@ -37,13 +38,20 @@ public class addBookDoAdd {
           preparedStatement.setString(4,book.getBookType());
           preparedStatement.setString(5,book.getBookDesc());
           preparedStatement.setString(6,String.valueOf(book.getBookPrice()));
-            ResultSet resultSet = preparedStatement.executeQuery();
+           resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
               return false;
           }
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
             if (preparedStatement != null) {
                 try {
                     preparedStatement.close();
@@ -67,7 +75,7 @@ public class addBookDoAdd {
      */
     public boolean doAdd(Book book){
 
-        String sql = "insert into book(bookName,bookauthor,gender,bookPrice,bookType,bookDesc) values(?,?,?,?,?,?)";
+        String sql = "insert into book(bookName,bookauth,gender,bookPrice,bookType,bookDesc) values(?,?,?,?,?,?)";
         JdbcUtil initJdbcUtil = JdbcUtil.getInitJdbcUtil();
         Connection connection = initJdbcUtil.getConnection();
         PreparedStatement preparedStatement = null;
