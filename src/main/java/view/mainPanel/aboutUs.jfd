@@ -6,14 +6,17 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space ::180:x, comp label1:::p:274:p, space :p:164:p}}"
-			"$verticalGroup": "par l {seq l {space :p:155:p, comp label1:::p::p, space ::211:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:123:p, comp label1:::p:355:p, space ::140:x}}"
+			"$verticalGroup": "par l {seq l {space :p:113:p, comp label1:::p:81:p, space ::189:x}}"
 		} ) {
 			name: "this"
+			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/guanliyuannan.png" )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "详情点击：https://github.com/ZhouJianzj"
 				"horizontalAlignment": 0
+				"font": new java.awt.Font( "Microsoft YaHei UI", 1, 16 )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "label1MouseClicked", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

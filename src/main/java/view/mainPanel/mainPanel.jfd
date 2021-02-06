@@ -9,14 +9,16 @@ new FormModel {
 			name: "mianForm"
 			"visible": true
 			"defaultCloseOperation": 0
-			"title": "BOOKS-MANAGEMENT-SYSTEM"
+			"title": "Book-Manager"
 			"$sizePolicy": 1
 			"resizable": false
+			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/guanliyuannan.png" )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space ::209:x, par l {seq t {comp label5:::p:607:p, space :p:202:p}, seq t {comp label1:::p:217:p, space :p:392:p}, seq t {comp label19:::p:301:p, space :p:353:p}}}}"
+				"$horizontalGroup": "par l {seq {space :p:209:p, par l {seq t {comp label5:::p:607:p, space :p:202:p}, seq t {comp label1:::p:217:p, space :p:392:p}, seq t {comp label19:::p:301:p, space :p:353:p}}}}"
 				"$verticalGroup": "par l {seq {space :p:83:p, comp label5:::p:156:p, space s:::p, comp label1:::p:61:p, space :::p, comp label19:::p:45:p, space ::361:x}}"
 			} ) {
 				name: "welcome"
+				"background": new java.awt.Color( 102, 102, 102, 255 )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label5"
 					"text": new FormMessage( null, "label5.text" )
@@ -496,7 +498,7 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "menu1"
 					"text": new FormMessage( null, "menu1.text" )
-					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/banshou.png" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/weihu.png" )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "menu2"
 						"text": new FormMessage( null, "menu2.text" )
@@ -551,6 +553,23 @@ new FormModel {
 						"text": new FormMessage( null, "menuItem6.text" )
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/yanhua.png" )
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem6ActionPerformed", true ) )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu5"
+					"text": new FormMessage( null, "menu5.text" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/zhuti.png" )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem1"
+						"text": new FormMessage( null, "menuItem1.text" )
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/anheimoshi.png" )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem1ActionPerformed", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem2"
+						"text": new FormMessage( null, "menuItem2.text" )
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/gaoliang.png" )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem2ActionPerformed", true ) )
 					} )
 				} )
 			}

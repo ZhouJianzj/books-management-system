@@ -481,6 +481,30 @@ public class mainPanel {
         // TODO add your code here
     }
 
+    /**
+     * 设置黑色主体
+     * @param e
+     */
+    private void menuItem1ActionPerformed(ActionEvent e) {
+        // TODO add your code here
+        addPanel.setBackground(Color.BLACK);
+        alterPanel.setBackground(Color.BLACK);
+        bookAddPanel.setBackground(Color.BLACK);
+        bookAlterPanel.setBackground(Color.BLACK);
+    }
+
+    /**
+     * 设置白色主题
+     * @param e
+     */
+    private void menuItem2ActionPerformed(ActionEvent e) {
+        // TODO add your code here
+        addPanel.setBackground(Color.WHITE);
+        alterPanel.setBackground(Color.WHITE);
+        bookAddPanel.setBackground(Color.WHITE);
+        bookAlterPanel.setBackground(Color.WHITE);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - unknown
@@ -497,6 +521,9 @@ public class mainPanel {
         exit = new JMenuItem();
         menu4 = new JMenu();
         menuItem6 = new JMenuItem();
+        menu5 = new JMenu();
+        menuItem1 = new JMenuItem();
+        menuItem2 = new JMenuItem();
         welcome = new JPanel();
         label5 = new JLabel();
         label1 = new JLabel();
@@ -586,8 +613,9 @@ public class mainPanel {
         {
             mianForm.setVisible(true);
             mianForm.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-            mianForm.setTitle("BOOKS-MANAGEMENT-SYSTEM");
+            mianForm.setTitle("Book-Manager");
             mianForm.setResizable(false);
+            mianForm.setIconImage(new ImageIcon(getClass().getResource("/pic/login/guanliyuannan.png")).getImage());
             Container mianFormContentPane = mianForm.getContentPane();
             mianFormContentPane.setLayout(new CardLayout());
 
@@ -597,7 +625,7 @@ public class mainPanel {
                 //======== menu1 ========
                 {
                     menu1.setText(bundle.getString("menu1.text"));
-                    menu1.setIcon(new ImageIcon(getClass().getResource("/pic/login/banshou.png")));
+                    menu1.setIcon(new ImageIcon(getClass().getResource("/pic/login/weihu.png")));
 
                     //======== menu2 ========
                     {
@@ -691,18 +719,48 @@ public class mainPanel {
                     menu4.add(menuItem6);
                 }
                 menuBar1.add(menu4);
+
+                //======== menu5 ========
+                {
+                    menu5.setText(bundle.getString("menu5.text"));
+                    menu5.setIcon(new ImageIcon(getClass().getResource("/pic/login/zhuti.png")));
+
+                    //---- menuItem1 ----
+                    menuItem1.setText(bundle.getString("menuItem1.text"));
+                    menuItem1.setIcon(new ImageIcon(getClass().getResource("/pic/login/anheimoshi.png")));
+                    menuItem1.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            menuItem1ActionPerformed(e);
+                        }
+                    });
+                    menu5.add(menuItem1);
+
+                    //---- menuItem2 ----
+                    menuItem2.setText(bundle.getString("menuItem2.text"));
+                    menuItem2.setIcon(new ImageIcon(getClass().getResource("/pic/login/gaoliang.png")));
+                    menuItem2.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            menuItem2ActionPerformed(e);
+                        }
+                    });
+                    menu5.add(menuItem2);
+                }
+                menuBar1.add(menu5);
             }
             mianForm.setJMenuBar(menuBar1);
 
             //======== welcome ========
             {
-                welcome.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
-                swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border
-                . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog"
-                ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,welcome. getBorder
-                ( )) ); welcome. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
-                .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException
-                ( ); }} );
+                welcome.setBackground(new Color(102, 102, 102));
+                welcome.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
+                javax.swing.border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax
+                .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
+                .awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
+                .Color.red),welcome. getBorder()));welcome. addPropertyChangeListener(new java.beans.
+                PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".
+                equals(e.getPropertyName()))throw new RuntimeException();}});
 
                 //---- label5 ----
                 label5.setText(bundle.getString("label5.text"));
@@ -724,7 +782,7 @@ public class mainPanel {
                 welcomeLayout.setHorizontalGroup(
                     welcomeLayout.createParallelGroup()
                         .addGroup(welcomeLayout.createSequentialGroup()
-                            .addContainerGap(209, Short.MAX_VALUE)
+                            .addGap(209, 209, 209)
                             .addGroup(welcomeLayout.createParallelGroup()
                                 .addGroup(GroupLayout.Alignment.TRAILING, welcomeLayout.createSequentialGroup()
                                     .addComponent(label5, GroupLayout.PREFERRED_SIZE, 607, GroupLayout.PREFERRED_SIZE)
@@ -1491,6 +1549,9 @@ public class mainPanel {
     private JMenuItem exit;
     private JMenu menu4;
     private JMenuItem menuItem6;
+    private JMenu menu5;
+    private JMenuItem menuItem1;
+    private JMenuItem menuItem2;
     private JPanel welcome;
     private JLabel label5;
     private JLabel label1;

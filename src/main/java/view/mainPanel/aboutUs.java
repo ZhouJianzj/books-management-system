@@ -5,6 +5,8 @@
 package view.mainPanel;
 
 import java.awt.*;
+import java.awt.event.*;
+import java.io.IOException;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
@@ -16,33 +18,51 @@ public class aboutUs extends JFrame {
         initComponents();
     }
 
+    private void label1MouseClicked(MouseEvent e) {
+        // TODO add your code here
+        String url = "https://github.com/ZhouJianzj";
+        try {
+            Runtime.getRuntime().exec("explorer " + url);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - unknown
         label1 = new JLabel();
 
         //======== this ========
+        setIconImage(new ImageIcon(getClass().getResource("/pic/login/guanliyuannan.png")).getImage());
         Container contentPane = getContentPane();
 
         //---- label1 ----
         label1.setText("\u8be6\u60c5\u70b9\u51fb\uff1ahttps://github.com/ZhouJianzj");
         label1.setHorizontalAlignment(SwingConstants.CENTER);
+        label1.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 16));
+        label1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                label1MouseClicked(e);
+            }
+        });
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(180, Short.MAX_VALUE)
-                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
-                    .addGap(164, 164, 164))
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addGap(123, 123, 123)
+                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 355, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(140, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGap(155, 155, 155)
-                    .addComponent(label1)
-                    .addContainerGap(211, Short.MAX_VALUE))
+                    .addGap(113, 113, 113)
+                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(189, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
