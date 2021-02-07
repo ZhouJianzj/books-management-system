@@ -30,7 +30,25 @@ public class CheckExist {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            initJdbcUtil.closeConnection();
         }
+
         return false;
     }
 }

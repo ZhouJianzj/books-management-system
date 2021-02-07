@@ -6,6 +6,7 @@ import utils.JdbcUtil;
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -15,6 +16,13 @@ import java.sql.SQLException;
  * @Date 2021/2/4
  **/
 public class alterType {
+    /**
+     * 维护图书类
+     * @param id
+     * @param type
+     * @param desc
+     * @return
+     */
     public int alterData(JTextField id,JTextField type,JTextArea desc){
         int i = 0;
         String sql = "update booktype set bookType = ?,bookDesc = ? where id = ?";
@@ -45,6 +53,49 @@ public class alterType {
             initJdbcUtil.closeConnection();
         }
         return i;
+    }
+
+    /**
+     * 判断修改之后的类别是否存在
+     *
+     *
+     */
+    public boolean checkRepet(JTextField type){
+        String text = type.getText();
+        String sql= "select * from booktype where bookType = ?";
+        JdbcUtil initJdbcUtil = JdbcUtil.getInitJdbcUtil();
+        Connection connection = initJdbcUtil.getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,text);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            initJdbcUtil.closeConnection();
+        }
+
+        return false;
     }
 
     public static void main(String[] args) {

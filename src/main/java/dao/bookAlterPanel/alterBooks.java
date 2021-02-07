@@ -19,7 +19,6 @@ public class alterBooks {
      * 图书的修改
      * @return
      */
-//  textArea2.getText(),price.getText(),gender,comboBox3.getSelectedItem().toString()
     public boolean alterBs (String id ,String name, String author, String desc, String price , String gender, String type){
         String sql = "update book set  bookName = ?,bookauth = ?,gender = ?,bookPrice = ?,bookDesc = ?, bookType = ? where id = ?";
         JdbcUtil initJdbcUtil = JdbcUtil.getInitJdbcUtil();

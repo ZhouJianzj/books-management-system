@@ -30,7 +30,7 @@ public class login {
      */
     private void logActionPerformed(ActionEvent e) {
         // TODO add your code here
-        if (userName.getText() == null ||"".equals(userName.getText().trim())){
+        if (userName.getText() == null ||"".equals(userName.getText())){
             JOptionPane.showMessageDialog(userName.getParent(),"请输入用户名");
         }else if(password.getPassword().length == 0){
             JOptionPane.showMessageDialog(userName.getParent(),"请输入密码！");
@@ -41,7 +41,7 @@ public class login {
             LoginDao loginDao = new LoginDao();
             boolean checked = loginDao.checked(user);
             if (checked){
-                new mainPanel();
+                new mainPanel().carousel();
                 login.dispose();
             }else{
                 JOptionPane.showMessageDialog(userName.getParent(),"你输入的账户密码错误！");
@@ -49,6 +49,10 @@ public class login {
         }
     }
 
+    /**
+     * 重置事件
+     * @param e
+     */
     private void resetActionPerformed(ActionEvent e) {
         // TODO add your code here
         userName.setText("");
@@ -73,6 +77,7 @@ public class login {
             login.setVisible(true);
             login.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             login.setResizable(false);
+            login.setIconImage(new ImageIcon(getClass().getResource("/pic/login/guanliyuannan.png")).getImage());
             Container loginContentPane = login.getContentPane();
 
             //---- label1 ----
@@ -92,11 +97,11 @@ public class login {
             label3.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
 
             //---- userName ----
-            userName.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 16));
+            userName.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
             userName.setHorizontalAlignment(SwingConstants.CENTER);
 
             //---- password ----
-            password.setFont(new Font(Font.MONOSPACED, Font.BOLD, 16));
+            password.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
             password.setHorizontalAlignment(SwingConstants.CENTER);
 
             //---- log ----
@@ -164,7 +169,7 @@ public class login {
                         .addGroup(loginContentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(reset)
                             .addComponent(log))
-                        .addContainerGap(66, Short.MAX_VALUE))
+                        .addContainerGap(72, Short.MAX_VALUE))
             );
             login.setSize(525, 430);
             login.setLocationRelativeTo(login.getOwner());

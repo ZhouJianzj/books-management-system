@@ -8,7 +8,7 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {seq {par l {seq {space :p:100:p, par l:::p {seq {comp reset:::p:88:p, space :::x, comp log:::p:88:p}, seq {par t {comp label2:::p::p, comp label3:::p::p}, space :::p, par l {comp userName:::p:214:p, comp password:::p:214:p}}}}, seq l {space :p:145:p, comp label1:::p:196:p}}, space ::141:x}}"
-			"$verticalGroup": "par l {seq l {space :p:53:p, comp label1:::p:42:p, space :p:45:p, par b {comp userName::b:p::p, comp label2::b:p::p}, space :p:54:p, par b {comp password::b:p::p, comp label3::b:p::p}, space :p:45:p, par b {comp reset::b:p::p, comp log::b:p::p}, space ::66:x}}"
+			"$verticalGroup": "par l {seq l {space :p:53:p, comp label1:::p:42:p, space :p:45:p, par b {comp userName::b:p::p, comp label2::b:p::p}, space :p:54:p, par b {comp password::b:p::p, comp label3::b:p::p}, space :p:45:p, par b {comp reset::b:p::p, comp log::b:p::p}, space ::72:x}}"
 		} ) {
 			name: "login"
 			"background": sfield java.awt.Color lightGray
@@ -17,6 +17,7 @@ new FormModel {
 			"$sizePolicy": 1
 			"defaultCloseOperation": 2
 			"resizable": false
+			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/pic/login/guanliyuannan.png" )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "图书管理系统"
@@ -38,12 +39,12 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "userName"
-				"font": new java.awt.Font( "Microsoft YaHei UI", 1, 16 )
+				"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
 				"horizontalAlignment": 0
 			} )
 			add( new FormComponent( "javax.swing.JPasswordField" ) {
 				name: "password"
-				"font": new java.awt.Font( "Monospaced", 1, 16 )
+				"font": new java.awt.Font( "Monospaced", 0, 14 )
 				"horizontalAlignment": 0
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -61,7 +62,7 @@ new FormModel {
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "resetActionPerformed", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 35, 20 )
+			"location": new java.awt.Point( 70, 15 )
 			"size": new java.awt.Dimension( 525, 430 )
 		} )
 	}

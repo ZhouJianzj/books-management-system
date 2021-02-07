@@ -33,7 +33,21 @@ public class mainPanel {
     public mainPanel() {
         initComponents();
     }
+    /**
+     *首页的轮播图
+     */
+    public void  carousel(){
+        new Timer(2000,new ActionListener(){
 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LayoutManager layout = panel1.getLayout();
+                CardLayout cardLayout;
+                cardLayout = (CardLayout)layout;
+                cardLayout.next(panel1);
+            }
+        }).start();
+    }
     /**
      * 图书类别添加事件
      * @param e
@@ -270,11 +284,19 @@ public class mainPanel {
                     && 描述.getText().equals(alterPanelTable.getValueAt(alterPanelTable.getSelectedRow(),2))){
             JOptionPane.showMessageDialog(alterPanel,"你还没有做任何的修改！");
 
-        } else{
+        } else if(图书类别名称.getText() == null || "".equals(图书类别名称.getText()) || 描述.getText() ==null ||
+                    "".equals(描述.getText())){
+            JOptionPane.showMessageDialog(alterPanel,"无效的图书类别，请补全信息！");
+        }else{
             alterType alterType = new alterType();
-            alterType.alterData(alterPanelID,图书类别名称,描述);
-            getTableData();
-            JOptionPane.showMessageDialog(alterPanel,"修改成功！");
+            if(alterType.checkRepet(图书类别名称)){
+                JOptionPane.showMessageDialog(alterPanel,"有重复的图书类别存在了！");
+            }else{
+                alterType.alterData(alterPanelID,图书类别名称,描述);
+                getTableData();
+                JOptionPane.showMessageDialog(alterPanel,"修改成功！");
+            }
+
         }
     }
 
@@ -528,6 +550,15 @@ public class mainPanel {
         label5 = new JLabel();
         label1 = new JLabel();
         label19 = new JLabel();
+        panel1 = new JPanel();
+        l1 = new JLabel();
+        l2 = new JLabel();
+        l3 = new JLabel();
+        l4 = new JLabel();
+        l5 = new JLabel();
+        l6 = new JLabel();
+        l7 = new JLabel();
+        l8 = new JLabel();
         addPanel = new JPanel();
         label4 = new JLabel();
         label6 = new JLabel();
@@ -754,13 +785,12 @@ public class mainPanel {
             //======== welcome ========
             {
                 welcome.setBackground(new Color(102, 102, 102));
-                welcome.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
-                javax.swing.border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax
-                .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
-                .awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
-                .Color.red),welcome. getBorder()));welcome. addPropertyChangeListener(new java.beans.
-                PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".
-                equals(e.getPropertyName()))throw new RuntimeException();}});
+                welcome.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
+                EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing
+                .border.TitledBorder.BOTTOM,new java.awt.Font("Dialo\u0067",java.awt.Font.BOLD,12),
+                java.awt.Color.red),welcome. getBorder()));welcome. addPropertyChangeListener(new java.beans.PropertyChangeListener()
+                {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("borde\u0072".equals(e.getPropertyName()))
+                throw new RuntimeException();}});
 
                 //---- label5 ----
                 label5.setText(bundle.getString("label5.text"));
@@ -777,33 +807,72 @@ public class mainPanel {
                 label19.setHorizontalAlignment(SwingConstants.CENTER);
                 label19.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 16));
 
+                //======== panel1 ========
+                {
+                    panel1.setLayout(new CardLayout());
+
+                    //---- l1 ----
+                    l1.setIcon(new ImageIcon(getClass().getResource("/pic/login/u=1215036122,2050336775&fm=193.jpg")));
+                    panel1.add(l1, "card1");
+
+                    //---- l2 ----
+                    l2.setIcon(new ImageIcon(getClass().getResource("/pic/login/u=1298257274,2200208629&fm=193.jpg")));
+                    panel1.add(l2, "card2");
+
+                    //---- l3 ----
+                    l3.setIcon(new ImageIcon(getClass().getResource("/pic/login/u=1473130774,1691286458&fm=193.jpg")));
+                    panel1.add(l3, "card3");
+
+                    //---- l4 ----
+                    l4.setIcon(new ImageIcon(getClass().getResource("/pic/login/u=2449638860,1209864432&fm=193.jpg")));
+                    panel1.add(l4, "card4");
+
+                    //---- l5 ----
+                    l5.setIcon(new ImageIcon(getClass().getResource("/pic/login/u=3221411920,2155823373&fm=193.jpg")));
+                    panel1.add(l5, "card5");
+
+                    //---- l6 ----
+                    l6.setIcon(new ImageIcon(getClass().getResource("/pic/login/u=3313064389,3108095463&fm=193.jpg")));
+                    panel1.add(l6, "card6");
+
+                    //---- l7 ----
+                    l7.setIcon(new ImageIcon(getClass().getResource("/pic/login/u=3863162306,3989584414&fm=193.jpg")));
+                    panel1.add(l7, "card7");
+
+                    //---- l8 ----
+                    l8.setIcon(new ImageIcon(getClass().getResource("/pic/login/u=682609979,42741070&fm=193.jpg")));
+                    panel1.add(l8, "card8");
+                }
+
                 GroupLayout welcomeLayout = new GroupLayout(welcome);
                 welcome.setLayout(welcomeLayout);
                 welcomeLayout.setHorizontalGroup(
                     welcomeLayout.createParallelGroup()
                         .addGroup(welcomeLayout.createSequentialGroup()
-                            .addGap(209, 209, 209)
+                            .addGap(300, 300, 300)
                             .addGroup(welcomeLayout.createParallelGroup()
-                                .addGroup(GroupLayout.Alignment.TRAILING, welcomeLayout.createSequentialGroup()
-                                    .addComponent(label5, GroupLayout.PREFERRED_SIZE, 607, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(202, 202, 202))
-                                .addGroup(GroupLayout.Alignment.TRAILING, welcomeLayout.createSequentialGroup()
-                                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(392, 392, 392))
-                                .addGroup(GroupLayout.Alignment.TRAILING, welcomeLayout.createSequentialGroup()
-                                    .addComponent(label19, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(353, 353, 353))))
+                                .addComponent(label1, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 431, GroupLayout.PREFERRED_SIZE))
+                            .addGap(287, 287, 287))
+                        .addGroup(GroupLayout.Alignment.TRAILING, welcomeLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(welcomeLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addComponent(label5, GroupLayout.PREFERRED_SIZE, 607, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label19, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE))
+                            .addGap(203, 203, 203))
                 );
                 welcomeLayout.setVerticalGroup(
                     welcomeLayout.createParallelGroup()
                         .addGroup(welcomeLayout.createSequentialGroup()
-                            .addGap(83, 83, 83)
+                            .addGap(32, 32, 32)
                             .addComponent(label5, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(label1, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(label19, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(361, Short.MAX_VALUE))
+                            .addGap(30, 30, 30)
+                            .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(152, Short.MAX_VALUE))
                 );
             }
             mianFormContentPane.add(welcome, "card1");
@@ -1556,6 +1625,15 @@ public class mainPanel {
     private JLabel label5;
     private JLabel label1;
     private JLabel label19;
+    private JPanel panel1;
+    private JLabel l1;
+    private JLabel l2;
+    private JLabel l3;
+    private JLabel l4;
+    private JLabel l5;
+    private JLabel l6;
+    private JLabel l7;
+    private JLabel l8;
     private JPanel addPanel;
     private JLabel label4;
     private JLabel label6;
