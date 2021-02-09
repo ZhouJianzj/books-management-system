@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="books-management:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="bb73e236-64e8-4865-b0c1-438729f824de" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/books_management_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/login/Login.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/login/Login.jfd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/LoginDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/LoginDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/alterBookTypeManager/CheckExist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/alterBookTypeManager/CheckExist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/alterBookTypeManager/alterType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/alterBookTypeManager/alterType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/bookAlterPanel/alterBooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/bookAlterPanel/alterBooks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/login/login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/login/login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/login/login.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/login/login.jfd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/login/login.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/login/login.jfd" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/mainPanel/mainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/mainPanel/mainPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/mainPanel/mainPanel.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/mainPanel/mainPanel.jfd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dao/LoginDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/LoginDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TT.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,31 +53,44 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/pic/login" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../jar" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.18189807" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Administrator\Desktop\student-manager\com\books-management\src\main\resources\pic\login" />
-      <recent name="C:\Users\Administrator\Desktop\student-manager\com\books-management\src\main\resources\pic\background" />
-      <recent name="C:\Users\Administrator\Desktop\student-manager\com\books-management\src\main\resources" />
-      <recent name="C:\Users\Administrator\Desktop\student-manager\com\books-management\src\main\java" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Administrator\Desktop\student-manager\com\books-management\src\main\resources\pic\login" />
       <recent name="C:\Users\Administrator\Desktop\student-manager\com\books-management\src\main\java\view\login" />
       <recent name="C:\Users\Administrator\Desktop\student-manager\com\books-management\src\main\resources" />
       <recent name="C:\Users\Administrator\Desktop\student-manager\com\books-management\src\main\java\view" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\student-manager\com\books-management\src\main\resources\pic\login" />
+      <recent name="C:\Users\Administrator\Desktop\student-manager\com\books-management\src\main\resources\pic\background" />
+      <recent name="C:\Users\Administrator\Desktop\student-manager\com\books-management\src\main\resources" />
+      <recent name="C:\Users\Administrator\Desktop\student-manager\com\books-management\src\main\java" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.login">
+  <component name="RunManager" selected="Application.Login">
     <configuration name="FFFF" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="FFFF" />
       <module name="books-management" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Login" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="view.login.Login" />
+      <module name="books-management" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="view.login.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -82,19 +101,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="view.mainPanel.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="alterBooks" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.bookAlterPanel.alterBooks" />
-      <module name="books-management" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dao.bookAlterPanel.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -130,11 +136,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Login" />
         <item itemvalue="Application.login" />
         <item itemvalue="Application.FFFF" />
         <item itemvalue="Application.mainPanel" />
         <item itemvalue="Application.aboutUs" />
-        <item itemvalue="Application.alterBooks" />
       </list>
     </recent_temporary>
   </component>
@@ -168,6 +174,9 @@
       <workItem from="1612589472574" duration="35159000" />
       <workItem from="1612663121661" duration="2524000" />
       <workItem from="1612665731670" duration="6352000" />
+      <workItem from="1612680329812" duration="5996000" />
+      <workItem from="1612753056740" duration="2978000" />
+      <workItem from="1612842582936" duration="5401000" />
     </task>
     <servers />
   </component>
@@ -175,9 +184,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="700" y="357" key="#Project_Structure" timestamp="1612273390052">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="276" y="278" width="1143" height="781" key="#Project_Structure" timestamp="1612848255560">
+      <screen x="0" y="0" width="1819" height="1080" />
     </state>
+    <state x="276" y="278" width="1143" height="781" key="#Project_Structure/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612848255560" />
     <state x="700" y="357" key="#Project_Structure/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612273390052" />
     <state x="501" y="198" key="#SQL_Dialects" timestamp="1612591292263">
       <screen x="0" y="0" width="1819" height="1080" />
@@ -188,54 +198,65 @@
     </state>
     <state x="725" y="232" key="#com.intellij.ide.util.MemberChooser/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612520571601" />
     <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612340511077" />
-    <state width="1323" height="507" key="GridCell.Tab.0.bottom" timestamp="1612674634652">
+    <state x="449" y="307" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1612847088309">
+      <screen x="0" y="0" width="1819" height="1080" />
+    </state>
+    <state x="449" y="307" key="#com.intellij.ide.util.TreeClassChooserDialog/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612847088309" />
+    <state x="337" y="207" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1612685492201" />
+    <state x="523" y="117" key="FileChooserDialogImpl" timestamp="1612685546589">
       <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="523" y="117" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1612685546589" />
+    <state width="1323" height="163" key="GridCell.Tab.0.bottom" timestamp="1612686557314">
+      <screen x="0" y="0" width="1265" height="768" />
     </state>
     <state width="1323" height="105" key="GridCell.Tab.0.bottom/-1366.243.1265.768/0.0.1819.1080@-1366.243.1265.768" timestamp="1612436244359" />
     <state width="1776" height="176" key="GridCell.Tab.0.bottom/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612627598542" />
     <state width="1323" height="159" key="GridCell.Tab.0.bottom/-1366.243.1366.728/0.0.1920.1040@-1366.243.1366.728" timestamp="1612353233704" />
     <state width="1877" height="159" key="GridCell.Tab.0.bottom/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612352818967" />
-    <state width="1222" height="101" key="GridCell.Tab.0.bottom/0.0.1265.768@0.0.1265.768" timestamp="1612668470094" />
-    <state width="1323" height="507" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1612674634652" />
+    <state width="1323" height="163" key="GridCell.Tab.0.bottom/0.0.1265.768@0.0.1265.768" timestamp="1612686557314" />
+    <state width="1323" height="163" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1612684419286" />
     <state width="1776" height="199" key="GridCell.Tab.0.bottom/0.0.1819.1080@0.0.1819.1080" timestamp="1612629397905" />
-    <state width="1323" height="507" key="GridCell.Tab.0.center" timestamp="1612674634651">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1323" height="163" key="GridCell.Tab.0.center" timestamp="1612686557313">
+      <screen x="0" y="0" width="1265" height="768" />
     </state>
     <state width="1323" height="105" key="GridCell.Tab.0.center/-1366.243.1265.768/0.0.1819.1080@-1366.243.1265.768" timestamp="1612436244358" />
     <state width="1776" height="176" key="GridCell.Tab.0.center/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612627598541" />
     <state width="1323" height="159" key="GridCell.Tab.0.center/-1366.243.1366.728/0.0.1920.1040@-1366.243.1366.728" timestamp="1612353233703" />
     <state width="1877" height="159" key="GridCell.Tab.0.center/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612352818967" />
-    <state width="1222" height="101" key="GridCell.Tab.0.center/0.0.1265.768@0.0.1265.768" timestamp="1612668470094" />
-    <state width="1323" height="507" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1612674634651" />
+    <state width="1323" height="163" key="GridCell.Tab.0.center/0.0.1265.768@0.0.1265.768" timestamp="1612686557313" />
+    <state width="1323" height="163" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1612684419286" />
     <state width="1776" height="199" key="GridCell.Tab.0.center/0.0.1819.1080@0.0.1819.1080" timestamp="1612629397905" />
-    <state width="1323" height="507" key="GridCell.Tab.0.left" timestamp="1612674634651">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1323" height="163" key="GridCell.Tab.0.left" timestamp="1612686557313">
+      <screen x="0" y="0" width="1265" height="768" />
     </state>
     <state width="1323" height="105" key="GridCell.Tab.0.left/-1366.243.1265.768/0.0.1819.1080@-1366.243.1265.768" timestamp="1612436244358" />
     <state width="1776" height="176" key="GridCell.Tab.0.left/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612627598541" />
     <state width="1323" height="159" key="GridCell.Tab.0.left/-1366.243.1366.728/0.0.1920.1040@-1366.243.1366.728" timestamp="1612353233703" />
     <state width="1877" height="159" key="GridCell.Tab.0.left/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612352818967" />
-    <state width="1222" height="101" key="GridCell.Tab.0.left/0.0.1265.768@0.0.1265.768" timestamp="1612668470094" />
-    <state width="1323" height="507" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1612674634651" />
+    <state width="1323" height="163" key="GridCell.Tab.0.left/0.0.1265.768@0.0.1265.768" timestamp="1612686557313" />
+    <state width="1323" height="163" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1612684419286" />
     <state width="1776" height="199" key="GridCell.Tab.0.left/0.0.1819.1080@0.0.1819.1080" timestamp="1612629397905" />
-    <state width="1323" height="507" key="GridCell.Tab.0.right" timestamp="1612674634652">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1323" height="163" key="GridCell.Tab.0.right" timestamp="1612686557313">
+      <screen x="0" y="0" width="1265" height="768" />
     </state>
     <state width="1323" height="105" key="GridCell.Tab.0.right/-1366.243.1265.768/0.0.1819.1080@-1366.243.1265.768" timestamp="1612436244358" />
     <state width="1776" height="176" key="GridCell.Tab.0.right/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612627598542" />
     <state width="1323" height="159" key="GridCell.Tab.0.right/-1366.243.1366.728/0.0.1920.1040@-1366.243.1366.728" timestamp="1612353233703" />
     <state width="1877" height="159" key="GridCell.Tab.0.right/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612352818967" />
-    <state width="1222" height="101" key="GridCell.Tab.0.right/0.0.1265.768@0.0.1265.768" timestamp="1612668470094" />
-    <state width="1323" height="507" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1612674634652" />
+    <state width="1323" height="163" key="GridCell.Tab.0.right/0.0.1265.768@0.0.1265.768" timestamp="1612686557313" />
+    <state width="1323" height="163" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1612684419286" />
     <state width="1776" height="199" key="GridCell.Tab.0.right/0.0.1819.1080@0.0.1819.1080" timestamp="1612629397905" />
     <state x="540" y="255" width="840" height="530" key="IDE.errors.dialog" timestamp="1612334235969">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="540" y="255" width="840" height="530" key="IDE.errors.dialog/-1366.243.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1612334235969" />
-    <state x="410" y="182" key="SettingsEditor" timestamp="1612608928470">
+    <state x="123" y="77" width="1356" height="979" key="SettingsEditor" timestamp="1612848288283">
       <screen x="0" y="0" width="1819" height="1080" />
     </state>
-    <state x="410" y="182" key="SettingsEditor/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612608928470" />
+    <state x="123" y="77" width="1356" height="979" key="SettingsEditor/-1366.243.1265.768/0.0.1819.1080@0.0.1819.1080" timestamp="1612848288283" />
+    <state x="207" y="0" key="SettingsEditor/0.0.1265.768@0.0.1265.768" timestamp="1612754888643" />
+    <state x="223" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1612685550290" />
     <state x="566" y="250" key="run.anything.popup" timestamp="1612613485866">
       <screen x="0" y="0" width="1819" height="1080" />
     </state>
