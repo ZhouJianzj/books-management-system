@@ -38,7 +38,7 @@ public class LoadingSearch {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            if (preparedStatement == null) {
+            if (preparedStatement != null) {
                 try {
                     preparedStatement.close();
                 } catch (SQLException e) {

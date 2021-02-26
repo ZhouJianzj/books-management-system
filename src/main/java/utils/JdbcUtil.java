@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class JdbcUtil {
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/student-manager";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "225600";
+    private static final String PASSWORD = "123321";
     private static Connection connection = null;
     private static JdbcUtil jdbcUtil = null;
 
